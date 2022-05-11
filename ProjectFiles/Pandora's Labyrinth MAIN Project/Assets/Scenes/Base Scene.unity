@@ -1411,7 +1411,7 @@ PrefabInstance:
     - target: {fileID: 4247658692521557690, guid: d82d24aff15673748b08fd5cc4a250ae,
         type: 3}
       propertyPath: m_Text
-      value: 'BUILD VERSION: 0.7.2'
+      value: 'BUILD VERSION: 0.7.5'
       objectReference: {fileID: 0}
     - target: {fileID: 6367842576904450924, guid: d82d24aff15673748b08fd5cc4a250ae,
         type: 3}
