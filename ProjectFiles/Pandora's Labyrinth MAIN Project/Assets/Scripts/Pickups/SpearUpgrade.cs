@@ -35,20 +35,24 @@ public class SpearUpgrade : MonoBehaviour
                 if (GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
                 {
                     hasCollected = true;
-                    GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("++", 4);
+                    playerScript.gameObject.GetComponent<PlayerFXHandler>().PlaySpearPickup();
                     switch (playerScript.currentSpear)
                     {
                         case PlayerController.spear.lvl0:
                             playerScript.currentSpear = PlayerController.spear.lvl1;
+                            GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 2", 4);
                             break;
                         case PlayerController.spear.lvl1:
                             playerScript.currentSpear = PlayerController.spear.lvl2;
+                            GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 3", 4);
                             break;
                         case PlayerController.spear.lvl2:
                             playerScript.currentSpear = PlayerController.spear.lvl3;
+                            GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 4", 4);
                             break;
                         case PlayerController.spear.lvl3:
                             playerScript.currentSpear = PlayerController.spear.lvl4;
+                            GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 5", 4);
                             break;
                     }
                 }

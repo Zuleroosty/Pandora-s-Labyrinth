@@ -21,11 +21,12 @@ public class DoorHandler : MonoBehaviour
         {
             if (this.name.Contains("Pandora"))
             {
-                if (GameObject.Find("BossEnemy(Clone)") != null) isLocked = true;
+                if (GameObject.Find(">GameManager<").GetComponent<GameManager>().hasMinotaurSpawned) isLocked = true;
+                else isLocked = false;
             }
             else if (this.name.Contains("Exit"))
             {
-                if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().hasPandorasBox) isLocked = false;
+                if (GameObject.Find(">GameManager<").GetComponent<GameManager>().hasMinotaurSpawned && GameObject.Find("BossEnemy(Clone)") == null) isLocked = false;
                 else isLocked = true;
             }
             else if (!transform.parent.parent.name.Contains("Spawn")) isLocked = transform.parent.parent.GetComponent<RoomHandler>().isRoomLocked;

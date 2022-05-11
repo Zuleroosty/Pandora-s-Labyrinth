@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFXHandler : MonoBehaviour
 {
-    public AudioClip footStep1, footStep2, takeDamage, throwSpear, sprintBoost, drinkPotion, itemPickup, goldPickup, pandoraPickup, xpPickup, levelUp;
+    public AudioClip footStep1, footStep2, takeDamage, throwSpear, sprintBoost, drinkPotion, itemPickup, goldPickup, spearPickup, pandoraPickup, xpPickup, levelUp;
     public GameObject fxPlayer;
     public bool isWalking, flip;
     public int walkTimer, maxWalkTimer, delayTimer, maxDelay;
@@ -39,7 +39,6 @@ public class PlayerFXHandler : MonoBehaviour
                 }
             }
         }
-        if (!fxPlayer.GetComponent<AudioSource>().isPlaying) fxPlayer.GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax;
     }
     public void PlayTakeDamage()
     {
@@ -77,6 +76,12 @@ public class PlayerFXHandler : MonoBehaviour
         fxPlayer.GetComponent<AudioSource>().pitch = 1f + Random.Range(-0.1f, 0.3f);
         fxPlayer.GetComponent<AudioSource>().PlayOneShot(goldPickup);
     }
+    public void PlaySpearPickup()
+    {
+        fxPlayer.GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax * 0.65f;
+        fxPlayer.GetComponent<AudioSource>().pitch = 1f;
+        fxPlayer.GetComponent<AudioSource>().PlayOneShot(spearPickup);
+    }
     public void PlayPandoraPickup()
     {
         fxPlayer.GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax * 0.65f;
@@ -91,7 +96,6 @@ public class PlayerFXHandler : MonoBehaviour
     }
     public void PlayLevelUp()
     {
-        fxPlayer.GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax * 0.55f;
         fxPlayer.GetComponent<AudioSource>().pitch = 1f;
         fxPlayer.GetComponent<AudioSource>().PlayOneShot(levelUp);
     }

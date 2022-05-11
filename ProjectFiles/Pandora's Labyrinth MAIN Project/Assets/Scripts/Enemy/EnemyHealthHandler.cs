@@ -90,8 +90,7 @@ public class EnemyHealthHandler : MonoBehaviour
                         transform.position += (transform.position - projectileSprite.transform.position);
                         if (!radialDamage)
                         {
-                            if (this.name.Contains("Boss")) TakeDamage(maxHealth/5f);
-                            else TakeDamage(200 * offSet);
+                            TakeDamage(200 * offSet);
                             flashDamage = true;
                             radialDamage = true;
                         }

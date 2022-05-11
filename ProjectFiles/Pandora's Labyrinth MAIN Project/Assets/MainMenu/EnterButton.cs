@@ -98,24 +98,23 @@ public class EnterButton : MonoBehaviour
         if (cameraObject.transform.position.x < -229.4f) speed = 2f;
         else
         {
-            if (cameraObject.transform.position.x < -86)
+            if (cameraObject.transform.position.x < -90)
             {
                 if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("DropBombGlobal")) && !hideSkipText)
                 {
+                    if (GameObject.Find(">GameManager<").GetComponent<AudioSource>().isPlaying) GameObject.Find(">GameManager<").GetComponent<AudioSource>().Stop();
                     cameraObject.transform.position = new Vector3(-55, 0, -10);
                     hideSkipText = true;
                 }
-                else
-                {
-                    speed = 0.18f;
-                }
-                if (!hideSkipText) GameObject.Find("SkipText").transform.localScale = new Vector3(1, 1, 1);
-                else GameObject.Find("SkipText").transform.localScale = new Vector3(0, 0, 1);
+                else speed = 0.0825f;
             }
             else
             {
                 if (cameraObject.transform.position.x < 0) speed = 1.25f;
+                hideSkipText = true;
             }
+            if (!hideSkipText) GameObject.Find("SkipText").transform.localScale = new Vector3(1, 1, 1);
+            else GameObject.Find("SkipText").transform.localScale = new Vector3(0, 0, 1);
         }
     }
 }

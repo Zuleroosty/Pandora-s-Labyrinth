@@ -22,11 +22,11 @@ public class AnimationHandler : MonoBehaviour
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
             // FLIP CHARACTER
-            if (GameObject.Find("ControllerAimPoint").transform.position.x > GameObject.Find("----PlayerObjectParent----").transform.position.x + 0.05f) WalkRight();
-            else if (GameObject.Find("ControllerAimPoint").transform.position.x < GameObject.Find("----PlayerObjectParent----").transform.position.x - 0.05f) WalkLeft();
+            if (GameObject.Find("ControllerAimPoint").transform.position.x > transform.position.x) WalkRight();
+            else if (GameObject.Find("ControllerAimPoint").transform.position.x < transform.position.x) WalkLeft();
 
             // SWITCH WALK/IDLE ANIM
-            if (GetComponent<PlayerController>().velocity.x != 0.000f || GetComponent<PlayerController>().velocity.y != 0.000f)
+            if (GetComponent<PlayerController>().velocity.x != 0.00f || GetComponent<PlayerController>().velocity.y != 0.00f)
             {
                 thisAnimator.SetTrigger("isMoving");
                 thisAnimator.ResetTrigger("isIdle");
@@ -36,6 +36,13 @@ public class AnimationHandler : MonoBehaviour
                 thisAnimator.SetTrigger("isIdle");
                 thisAnimator.ResetTrigger("isMoving");
             }
+        }
+        else
+        {
+            thisAnimator.SetTrigger("isIdle");
+            thisAnimator.ResetTrigger("isMoving");
+            thisAnimator.ResetTrigger("walkLeft");
+            thisAnimator.ResetTrigger("walkRight");
         }
     }
     void WalkLeft()

@@ -452,9 +452,10 @@ MonoBehaviour:
   takeDamage: {fileID: 8300000, guid: eb98f1d624317504d8960ea32e6d4ef8, type: 3}
   throwSpear: {fileID: 8300000, guid: 133d73fc2b291e341b153ec173eb5774, type: 3}
   sprintBoost: {fileID: 8300000, guid: 354b41b9ac393194b821c918737362fa, type: 3}
-  drinkPotion: {fileID: 8300000, guid: 1642e257816fcc34d9af7340f1f5b3b1, type: 3}
+  drinkPotion: {fileID: 8300000, guid: 37f6216ea87b9ad49ae8f1a0fbd31ef3, type: 3}
   itemPickup: {fileID: 8300000, guid: 3c5f2fff4fbc1db4fb5cb7099e28f0ea, type: 3}
   goldPickup: {fileID: 8300000, guid: 4d5d2d847c18f6644933e541524995ce, type: 3}
+  spearPickup: {fileID: 8300000, guid: bac14c036463ccc488b7d091031eecdf, type: 3}
   pandoraPickup: {fileID: 8300000, guid: 0f65f1ae19e58674a8dd28d18720d3a0, type: 3}
   xpPickup: {fileID: 8300000, guid: 0057b2dff4341ab43a459f909aa2fb55, type: 3}
   levelUp: {fileID: 8300000, guid: bdc00c18fd527ac479c9bd2e5834d136, type: 3}

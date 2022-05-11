@@ -148,27 +148,25 @@ public class EnemySpawner : MonoBehaviour
     }
     void SpawnEnemy(int type)
     {
-        if (spawnTimer < 55) spawnTimer++;
+        if (spawnTimer < 30) spawnTimer++;
         {
             thisAnimator.SetTrigger("isSpawning");
             thisAnimator.ResetTrigger("isIdle");
         }
-        if (spawnTimer >= 55)
+        if (spawnTimer >= 30)
         {
-            
             switch (type)
             {
-                case 1: // GOBLINS
+                case 1: // GOBLIN
                     Instantiate(normalPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
-                case 2: // SPIDERS
+                case 2: // SPIDER
                     Instantiate(fastPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
-                case 3: // SCORPIONS
+                case 3: // SCORPION
                     Instantiate(rangedPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
             }
-
             readyToSpawn = false;
             thisAnimator.SetTrigger("isIdle");
             thisAnimator.ResetTrigger("isSpawning");

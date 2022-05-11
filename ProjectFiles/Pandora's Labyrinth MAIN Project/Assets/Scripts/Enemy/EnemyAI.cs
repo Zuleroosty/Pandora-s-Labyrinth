@@ -47,6 +47,7 @@ public class EnemyAI : MonoBehaviour
                 GetComponent<LootSpawner>().xpDrop = Random.Range(10, 16);
                 spawnSpeed = 8f;
                 speed = (spawnSpeed * (1 + (GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel) * 0.2f)) * Random.Range(0.9f, 1.06f);
+                GameObject.Find(">GameManager<").GetComponent<GameManager>().hasMinotaurSpawned = true;
                 break;
         }
     }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ButtonFX : MonoBehaviour
 {
-    public AudioClip hover, press, reject;
+    public AudioClip hover, press, reject, pause, unPause;
     private void Update()
     {
-        GetComponent<AudioSource>().volume = transform.parent.GetComponent<AudioHandler>().effectsMax * 0.15f;
+        GetComponent<AudioSource>().volume = transform.parent.GetComponent<AudioHandler>().effectsMax * 0.25f;
     }
 
     public void ButtonHover()
@@ -21,5 +21,13 @@ public class ButtonFX : MonoBehaviour
     public void ButtonReject()
     {
         GetComponent<AudioSource>().PlayOneShot(reject);
+    }
+    public void PlayPause()
+    {
+        GetComponent<AudioSource>().PlayOneShot(pause);
+    }
+    public void PlayUnPause()
+    {
+        GetComponent<AudioSource>().PlayOneShot(unPause);
     }
 }

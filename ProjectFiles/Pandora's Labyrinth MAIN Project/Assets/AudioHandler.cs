@@ -5,8 +5,9 @@ using UnityEngine;
 public class AudioHandler : MonoBehaviour
 {
     public float effectsMax, ambienceMax, musicMax, averageVolume;
-    public AudioClip menuMusic, combatMusic, winMusic, loseMusic;
-    public bool playEndMusic, storyScreen;
+    public AudioClip menuMusic, combatMusic, bossMusic, winMusic, loseMusic, introVoiceOver;
+    public bool storyScreen;
+    int storyDelay;
 
     private void Start()
     {
@@ -16,12 +17,16 @@ public class AudioHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        effectsMax = averageVolume * 0.6f;
-        ambienceMax = averageVolume * 0.3f;
-        musicMax = averageVolume * 0.35f;
+        effectsMax = averageVolume * 0.525f;
+        ambienceMax = averageVolume * 0.325f;
+        musicMax = averageVolume * 0.15f;
 
-        if (GetComponent<GameManager>().gameState == GameManager.state.InGame) storyScreen = false;
-        if (GetComponent<GameManager>().gameState == GameManager.state.Reset || GetComponent<GameManager>().gameState == GameManager.state.GenLevel || storyScreen)
+        if (GetComponent<GameManager>().gameState == GameManager.state.Start)
+        {
+            storyScreen = false;
+            if (GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Stop();
+        }
+        if (GetComponent<GameManager>().gameState == GameManager.state.Reset || GetComponent<GameManager>().gameState == GameManager.state.GenLevel)
         {
             if (GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Stop();
         }
@@ -29,9 +34,9 @@ public class AudioHandler : MonoBehaviour
         {
             if (GetComponent<GameManager>().gameState == GameManager.state.Win || GetComponent<GameManager>().gameState == GameManager.state.Lose)
             {
-                if (!playEndMusic)
+                if (!GetComponent<AudioSource>().isPlaying)
                 {
-                    if (GetComponent<GameManager>().gameState == GameManager.state.Win)     // WAITING FOR AUDIO TRACKS
+                    if (GetComponent<GameManager>().gameState == GameManager.state.Win)
                     {
                         GetComponent<AudioSource>().clip = winMusic;
                         GetComponent<AudioSource>().Play();
@@ -41,14 +46,46 @@ public class AudioHandler : MonoBehaviour
                         GetComponent<AudioSource>().clip = loseMusic;
                         GetComponent<AudioSource>().Play();
                     }
-                    playEndMusic = true;
-                    AdjustVolume();
                 }
+                storyDelay = 0;
+                GetComponent<AudioSource>().volume = averageVolume * 0.525f;
             }
             else
             {
-                playEndMusic = false;
-                if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat)
+                GetComponent<AudioSource>().loop = true;
+                if (GetComponent<GameManager>().gameState == GameManager.state.Menu)
+                {
+                    if (storyScreen)
+                    {
+                        if (storyDelay < 60)
+                        {
+                            storyDelay++;
+                            if (GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Stop();
+                        }
+                        if (storyDelay >= 60)
+                        {
+                            GetComponent<AudioSource>().volume = effectsMax;
+                            GetComponent<AudioSource>().loop = false;
+                            if (GetComponent<AudioSource>().clip != introVoiceOver)
+                            {
+                                GetComponent<AudioSource>().clip = introVoiceOver;
+                                GetComponent<AudioSource>().Play();
+                            }
+                        }
+                        else if (GetComponent<AudioSource>().volume > 0) GetComponent<AudioSource>().volume -= 0.001f;
+                        else GetComponent<AudioSource>().Stop();
+                    }
+                    else
+                    {
+                        if (!GetComponent<AudioSource>().isPlaying)
+                        {
+                            GetComponent<AudioSource>().clip = menuMusic;
+                            GetComponent<AudioSource>().Play();
+                        }
+                        AdjustVolume();
+                    }
+                }
+                else if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat)
                 {
                     if (!GetComponent<AudioSource>().isPlaying)
                     {
@@ -57,11 +94,11 @@ public class AudioHandler : MonoBehaviour
                     }
                     AdjustVolume();
                 }
-                if (GetComponent<GameManager>().gameState == GameManager.state.Menu)
+                else if (GameObject.Find("BossEnemy(Clone)") != null)
                 {
                     if (!GetComponent<AudioSource>().isPlaying)
                     {
-                        GetComponent<AudioSource>().clip = menuMusic;
+                        GetComponent<AudioSource>().clip = bossMusic;
                         GetComponent<AudioSource>().Play();
                     }
                     AdjustVolume();

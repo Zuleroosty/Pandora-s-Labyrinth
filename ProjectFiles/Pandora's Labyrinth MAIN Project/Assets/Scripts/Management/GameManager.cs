@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public enum state {GenLevel, Menu, Start, InGame, Lose, Win, Reset, Pause, Quit}
     public state gameState;
     public int startDelay;
+    public bool hasMinotaurSpawned;
 
     // RESET VARIABLES
     public bool levelReset, readyToStart;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
                 startDelay = 0;
                 levelReset = false;
                 spawnNextLvl = false;
+                hasMinotaurSpawned = false;
                 UpdateObjective("Locate Pandora's Box");
                 gameState = state.InGame;
             }
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
         {
             if (roomsMasterParent.transform.childCount - 1 >= 0) RemoveALLRooms();
             else if (roomsMasterParent.transform.childCount - 1 < 0) levelReset = true;
-            if (levelReset && GameObject.Find("----PathCollision----").transform.childCount <= 0)
+            if (levelReset)
             {
                 upgradeRooms = 0;
                 readyToStart = false;
@@ -99,8 +101,16 @@ public class GameManager : MonoBehaviour
         {
             if (gameState == state.InGame || gameState == state.Pause)
             {
-                if (gameState == state.InGame) gameState = state.Pause;
-                else if (gameState == state.Pause) gameState = state.InGame;
+                if (gameState == state.InGame)
+                {
+                    gameState = state.Pause;
+                    transform.GetChild(0).GetComponent<ButtonFX>().PlayPause();
+                }
+                else if (gameState == state.Pause)
+                {
+                    gameState = state.InGame;
+                    transform.GetChild(0).GetComponent<ButtonFX>().PlayUnPause();
+                }
             }
         }
         if (gameState == state.Pause) isGamePaused = true;
