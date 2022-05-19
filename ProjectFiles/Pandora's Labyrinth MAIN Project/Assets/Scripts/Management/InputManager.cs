@@ -44,7 +44,7 @@ public class InputManager : MonoBehaviour
             playerCon.isMoving = true;
         }
         else playerCon.isMoving = false;
-        if (Input.GetButton("UseBoostKey") || Input.GetAxisRaw("UseBoostCon") > 0.1f) playerCon.UseBoost();
+        if (Input.GetButton("UseBoostKey") || Input.GetAxisRaw("UseBoostCon") > 0.1f || Input.GetAxisRaw("SwitchBumpers") < 0.1f) playerCon.UseBoost();
         
     }
     private void Interactions()
@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
     }
     private void Combat()
     {
-        if (Input.GetButton("ShootSingleKey") || Input.GetAxisRaw("ShootSingleCon") > 0.1f) playerCon.SingleShot();
-        if (Input.GetButtonDown("ShootTripleGlobal")) playerCon.TripleShot();
+        if (Input.GetButton("ShootSingleKey") || Input.GetAxisRaw("ShootSingleCon") > 0.1f || Input.GetAxisRaw("SwitchBumpers") > 0.1f) playerCon.SingleShot();
+        if (Input.GetButtonDown("ShootTripleGlobal") || Input.GetKeyDown(KeyCode.JoystickButton11)) playerCon.TripleShot();
     }
 }
