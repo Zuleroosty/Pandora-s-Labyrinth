@@ -10,7 +10,6 @@ public class HealthUpgradeButton : MonoBehaviour
     SpriteRenderer cursor;
     Color thisColour;
     float defaultScale;
-    int delayTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +83,5 @@ public class HealthUpgradeButton : MonoBehaviour
         player.healthIncrease += 0.1f;
         player.healthRequiredLevel *= 3;
         player.healthCost = player.healthRequiredLevel / 3;
-        delayTimer = 0;
     }
 }

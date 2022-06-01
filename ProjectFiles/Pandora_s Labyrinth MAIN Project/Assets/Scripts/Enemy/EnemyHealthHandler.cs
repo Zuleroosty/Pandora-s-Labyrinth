@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyHealthHandler : MonoBehaviour
 {
     public float health, maxHealth, damage, flashTimer, offSet;
-    public AudioClip deathFX;
+    public AudioClip deathFX1, deathFX2, painFX1, painFX2, painFX3;
     public bool flashDamage, radialDamage;
     SpriteRenderer projectileSprite;
     Color thisColour;
     GameObject projectileParent;
-    int childID, childMax;
+    int childID, childMax, randNum;
 
     private void Start()
     {
@@ -55,17 +55,38 @@ public class EnemyHealthHandler : MonoBehaviour
 
         if (health <= 0)
         {
-            GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(deathFX, transform.position);
-            // UPDATE STAT TRACKER
-            if (this.name.Contains("Ranged")) GameObject.Find(">GameManager<").GetComponent<StatHandler>().scorpionsKilled++;
-            if (this.name.Contains("Fast")) GameObject.Find(">GameManager<").GetComponent<StatHandler>().spidersKilled++;
-            if (this.name.Contains("Normal")) GameObject.Find(">GameManager<").GetComponent<StatHandler>().goblinsKilled++;
-            if (this.name.Contains("Boss"))
+            randNum = Random.Range(0, 1);
+            switch (randNum)
             {
-                GameObject.Find(">GameManager<").GetComponent<StatHandler>().minotaursKilled++;
-                if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat) GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat = false;
+                case 0:
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(deathFX1, transform.position);
+                    break;
+                case 1:
+                    if (deathFX2 == null) GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(deathFX1, transform.position);
+                    else GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(deathFX2, transform.position);
+                    break;
             }
-            else GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+
+            // UPDATE STAT TRACKERS
+            switch (GetComponent<EnemyAI>().enemyType)
+            {
+                case EnemyAI.type.Normal:
+                    GameObject.Find(">GameManager<").GetComponent<StatHandler>().goblinsKilled++;
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    break;
+                case EnemyAI.type.Fast:
+                    GameObject.Find(">GameManager<").GetComponent<StatHandler>().spidersKilled++;
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    break;
+                case EnemyAI.type.Ranged:
+                    GameObject.Find(">GameManager<").GetComponent<StatHandler>().scorpionsKilled++;
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    break;
+                case EnemyAI.type.Hard:
+                    GameObject.Find(">GameManager<").GetComponent<StatHandler>().minotaursKilled++;
+                    if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat) GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat = false;
+                    break;
+            }
 
             Destroy(this.gameObject);
         }
@@ -77,6 +98,19 @@ public class EnemyHealthHandler : MonoBehaviour
         if (health - damageAmount < 0) health = 0;
         else health -= damageAmount;
         GameObject.Find(">GameManager<").GetComponent<StatHandler>().damageDealt += damageAmount;
+        randNum = Random.Range(0, 3);
+        switch (randNum)
+        {
+            case 0:
+                GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(painFX1, transform.position);
+                break;
+            case 1:
+                GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(painFX2, transform.position);
+                break;
+            case 3:
+                GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(painFX3, transform.position);
+                break;
+        }
     }
     private void ProjectileCollisionTest()
     {

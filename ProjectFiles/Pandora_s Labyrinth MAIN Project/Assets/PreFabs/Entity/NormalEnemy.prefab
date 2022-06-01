@@ -306,7 +306,11 @@ MonoBehaviour:
   damage: 0
   flashTimer: 0
   offSet: 0
-  deathFX: {fileID: 0}
+  deathFX1: {fileID: 8300000, guid: e8689eaf7491ac440885d1ad9b2e1421, type: 3}
+  deathFX2: {fileID: 8300000, guid: 5578afdb62431bb49beacef714e05935, type: 3}
+  painFX1: {fileID: 8300000, guid: 1bc12e9745638174381ad64c5a321613, type: 3}
+  painFX2: {fileID: 8300000, guid: 36fa754f90421764aa7cbedc3fb2f310, type: 3}
+  painFX3: {fileID: 8300000, guid: 371f9532f2921a3428a37dbadc7c31ac, type: 3}
   flashDamage: 0
   radialDamage: 0
 --- !u!114 &6044588027321220020
@@ -457,10 +461,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisSprite: {fileID: 5062047361134431216}
-  thisShadow: {fileID: 34475938337474005}
   thisCollider: {fileID: 5599189953918818390}
-  spriteParent: {fileID: 5062047361134431216}
-  playerColliding: 0
+  collidingObject: {fileID: 0}
+  expectedZ: 0
+  inFrontOfPlayer: 0
+  inFrontOfObject: 0
 --- !u!1 &4857530587791508112
 GameObject:
   m_ObjectHideFlags: 0

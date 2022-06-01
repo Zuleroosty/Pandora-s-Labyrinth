@@ -10,7 +10,6 @@ public class SpeedIncreaseButton : MonoBehaviour
     SpriteRenderer cursor;
     Color thisColour;
     float defaultScale;
-    int delayTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +83,5 @@ public class SpeedIncreaseButton : MonoBehaviour
         player.speedIncrease += 0.1f;
         player.speedRequiredLevel *= 3;
         player.speedCost = player.speedRequiredLevel / 3;
-        delayTimer = 0;
     }
 }

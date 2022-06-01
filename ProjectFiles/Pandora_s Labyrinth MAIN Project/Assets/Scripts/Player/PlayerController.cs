@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         this.name = "----PlayerObjectParent----";
 
-        speedDefault = 0.085f;
+        speedDefault = 0.1f;
         speed = speedDefault;
 
         maxHealth = 650;

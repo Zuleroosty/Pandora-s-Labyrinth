@@ -7,15 +7,12 @@ public class EnemyShootingHandler : MonoBehaviour
     GameObject newProjectile;
     Sprite projectileHitSprite, projectileFireSprite;
     Vector3 shootLocation;
-    int projectileSpeed, projectileDamage;
-    float projectileFireRate;
+    int projectileSpeed;
 
     // Start is called before the first frame update
     void Awake()
     {
-        projectileFireRate = 0.2f; // Lower = Faster (Shoots p/Second)
         projectileSpeed = 3; // Lower = Faster
-        projectileDamage = 15;
     }
 
     // Update is called once per frame
