@@ -21,7 +21,7 @@ public class PlayerFXHandler : MonoBehaviour
                     if (walkTimer < 15) walkTimer++;
                     if (walkTimer >= 15)
                     {
-                        GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax * 0.45f;
+                        GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax * 0.25f;
                         GetComponent<AudioSource>().pitch = 1f + Random.Range(0.01f, 0.03f);
                         walkTimer = 0;
                         flip = !flip;

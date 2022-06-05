@@ -6,7 +6,7 @@ public class CollisionManager : MonoBehaviour
 {
     public GameObject playerObject, projectileObject, enemyObject;
     public AudioClip woodFX, stoneFX, metalFX;
-    public bool disableCollision, projectile, player, enemy;
+    public bool disableCollision, projectile, player, enemy, playerInRange;
     PlayerController playerScript;
     EnemyAI enemyScript;
     SpriteRenderer playerSprite, thisSprite;
@@ -59,22 +59,27 @@ public class CollisionManager : MonoBehaviour
         {
             if (!disableCollision)
             {
-                if (player)
+                if (player && playerInRange)
                 { 
                     UpdatePlayerCollision(); // COLLISION TESTS DOUBLED PER FRAME TO ENSURE CORRECT COLLISIONS
                     UpdatePlayerCollision();
                 }
-                if (projectile)
+                if (projectile && projectileParent.transform.childCount > 0)
                 {
                     UpdateProjectileCollision();
                     UpdateProjectileCollision();
                 }
-                if (enemy)
+                if (enemy && enemyParent.transform.childCount > 0)
                 {
                     UpdateEnemyCollision();
                     UpdateEnemyCollision();
                 }
             }
+            if (playerObject.transform.position.x < GetComponent<SpriteRenderer>().bounds.min.x - 25) playerInRange = true;
+            else if (playerObject.transform.position.x < GetComponent<SpriteRenderer>().bounds.max.x + 25) playerInRange = true;
+            else if (playerObject.transform.position.y > GetComponent<SpriteRenderer>().bounds.min.y - 20) playerInRange = true;
+            else if (playerObject.transform.position.y < GetComponent<SpriteRenderer>().bounds.max.y + 20) playerInRange = true;
+            else playerInRange = false;
         }
     }
     private void UpdatePlayerCollision()

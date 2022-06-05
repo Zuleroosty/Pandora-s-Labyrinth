@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyHealthHandler : MonoBehaviour
 {
+    public GameObject scorePrefab, scoreLocation, newScoreObject;
     public float health, maxHealth, damage, flashTimer, offSet;
     public AudioClip deathFX1, deathFX2, painFX1, painFX2, painFX3;
     public bool flashDamage, radialDamage;
     SpriteRenderer projectileSprite;
     Color thisColour;
     GameObject projectileParent;
-    int childID, childMax, randNum;
+    int childID, childMax, randNum, damageScore, deathScore;
 
     private void Start()
     {
@@ -22,23 +23,39 @@ public class EnemyHealthHandler : MonoBehaviour
         offSet = 0.5f;
         offSet += (GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel + GameObject.Find(">GameManager<").GetComponent<LevelHandler>().currentPlayLevel) * 0.2f;
 
-        if (maxHealth <= 0)
+        if (this.name.Contains("Ranged"))
         {
-            if (this.name.Contains("Ranged")) maxHealth = 330 * offSet;
-            if (this.name.Contains("Fast")) maxHealth = 105 * offSet;
-            if (this.name.Contains("Normal")) maxHealth = 110 * offSet;
-            if (this.name.Contains("Boss")) maxHealth = 5325 * offSet;
-
-            health = maxHealth;
+            maxHealth = 330 * offSet;
+            damageScore = 25;
+            deathScore = 315;
         }
+        if (this.name.Contains("Fast"))
+        {
+            maxHealth = 105 * offSet;
+            damageScore = 5;
+            deathScore = 125;
+        }
+        if (this.name.Contains("Normal"))
+        {
+            maxHealth = 110 * offSet;
+            damageScore = 15;
+            deathScore = 255;
+        }
+        if (this.name.Contains("Boss"))
+        {
+            maxHealth = 5325 * offSet;
+            damageScore = 55;
+            deathScore = 10450;
+        }
+
+        health = maxHealth;
 
         if (!this.name.Contains("Boss")) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount++;
     }
 
     private void Update()
     {
-        ProjectileCollisionTest(); //REPEATED TO AVOID MISSING
-        ProjectileCollisionTest();
+        if (projectileParent.transform.childCount > 0) ProjectileCollisionTest(); //REPEATED TO AVOID MISSING
 
         if (flashDamage)
         {
@@ -51,10 +68,14 @@ public class EnemyHealthHandler : MonoBehaviour
                 flashTimer = 0;
             }
         }
+
         GetComponent<EnemyAI>().damageObject.GetComponent<SpriteRenderer>().color = thisColour;
 
         if (health <= 0)
         {
+            newScoreObject = Instantiate(scorePrefab, scoreLocation.transform.position, Quaternion.identity);
+            newScoreObject.GetComponent<ScoreDisplayAnim>().scoreToDisplay = deathScore;
+
             randNum = Random.Range(0, 1);
             switch (randNum)
             {
@@ -95,9 +116,20 @@ public class EnemyHealthHandler : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         if (GetComponent<EnemyAI>().activateBoost) GetComponent<EnemyAI>().boostTimer = 20;
-        if (health - damageAmount < 0) health = 0;
-        else health -= damageAmount;
-        GameObject.Find(">GameManager<").GetComponent<StatHandler>().damageDealt += damageAmount;
+        if (health - damageAmount < 0)
+        {
+            GameObject.Find(">GameManager<").GetComponent<StatHandler>().damageDealt += health;
+            health = 0;
+        }
+        else
+        {
+            health -= damageAmount;
+            GameObject.Find(">GameManager<").GetComponent<StatHandler>().damageDealt += damageAmount;
+            newScoreObject = Instantiate(scorePrefab, scoreLocation.transform.position, Quaternion.identity);
+            newScoreObject.GetComponent<ScoreDisplayAnim>().scoreToDisplay = damageScore;
+        }
+
+
         randNum = Random.Range(0, 3);
         switch (randNum)
         {

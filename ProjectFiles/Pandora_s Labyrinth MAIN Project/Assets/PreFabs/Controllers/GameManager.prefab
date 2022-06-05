@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f13f4e21390047aff7849d963d07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hover: {fileID: 8300000, guid: f4ecb91864ee5434db011ef50ddf4d5e, type: 3}
-  press: {fileID: 8300000, guid: 814b01ed536fc84419e946cc2fb0daa6, type: 3}
+  hover: {fileID: 8300000, guid: 618474b5828f5ae47b0f1f3a4cd3d7ee, type: 3}
+  press: {fileID: 8300000, guid: f4ecb91864ee5434db011ef50ddf4d5e, type: 3}
   reject: {fileID: 8300000, guid: 1b3bd58faf637d1429156b689897c012, type: 3}
   pause: {fileID: 8300000, guid: ab9208219511d4647a5d8fe43305547a, type: 3}
   unPause: {fileID: 8300000, guid: a462586f2f0e69d43b16d1df2595df8c, type: 3}
@@ -351,7 +351,6 @@ MonoBehaviour:
   winMusic: {fileID: 8300000, guid: a7710869c7a471a468d655ed4c96aab5, type: 3}
   loseMusic: {fileID: 8300000, guid: 0eb30a24c2078f24b8ebf5c07888020c, type: 3}
   introVoiceOver: {fileID: 8300000, guid: 3423f1cd02b3f704b893c102f45d787f, type: 3}
-  playEndMusic: 0
   storyScreen: 0
 --- !u!82 &1965016815905825396
 AudioSource:

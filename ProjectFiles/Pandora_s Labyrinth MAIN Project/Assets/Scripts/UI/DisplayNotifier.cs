@@ -17,9 +17,9 @@ public class DisplayNotifier : MonoBehaviour
         thisID = transform.parent.childCount;
         boxPosY = (thisID * 1.5f);
         spawnPos = transform.localPosition;
-        travelDist = 6.5f;
+        travelDist = -1.6f;
         displayTimeTotal = 60;
-        transform.localScale = new Vector3(0.65f, 0.65f, 1);
+        transform.localScale = new Vector3(0.065f, 0.065f, 1);
     }
 
     void Update()
@@ -29,14 +29,13 @@ public class DisplayNotifier : MonoBehaviour
             if (!transform.parent.name.Contains("KillBox"))
             {
                 UpdateID();
-                UpdateID();
-                boxPosY = (thisID * 1.5f); // UPDATE LOCATION BASED ON ID
-                if (boxPosY < transform.localPosition.y) transform.localPosition -= new Vector3(0, 0.5f, 0);
-                if (boxPosY > transform.localPosition.y) transform.localPosition += new Vector3(0, 0.5f, 0);
+                boxPosY = (thisID * -1.5f); // UPDATE LOCATION BASED ON ID
+                if (boxPosY < transform.localPosition.y) transform.localPosition -= new Vector3(0, 0.1f, 0);
+                if (boxPosY > transform.localPosition.y) transform.localPosition += new Vector3(0, 0.1f, 0);
             }
             if (!fadeOut)
             {
-                if (transform.localPosition.x > -travelDist) transform.localPosition -= new Vector3(0.4f, 0, 0);
+                if (transform.localPosition.x > travelDist) transform.localPosition -= new Vector3(0.085f, 0, 0);
                 else fadeOut = true;
             }
             else if (thisID == 0)
@@ -46,7 +45,7 @@ public class DisplayNotifier : MonoBehaviour
                 if (displayTime >= displayTimeTotal)
                 {
                     if (!transform.parent.name.Contains("KillBox")) transform.parent = GameObject.Find("----NotiKillBox----").transform;
-                    if (transform.localPosition.x < 0) transform.localPosition += new Vector3(0.75f, 0, 0);
+                    if (transform.localPosition.x < 0) transform.localPosition += new Vector3(0.035f, 0, 0);
                     else Destroy(gameObject);
                 }
             }
@@ -60,7 +59,7 @@ public class DisplayNotifier : MonoBehaviour
         {
             if (GameObject.Find("----NotificationLocation----").transform.GetChild(childID).gameObject == this.gameObject)
             {
-                thisID = childID;
+                thisID = childID - 1;
             }
         }
         else

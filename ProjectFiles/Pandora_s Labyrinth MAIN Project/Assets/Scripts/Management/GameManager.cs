@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
                 newNotificationObject = armourNotification;
                 break;
         }
-        notifyBar = Instantiate(newNotificationObject, new Vector3(GameObject.Find("----NotificationLocation----").transform.position.x, GameObject.Find("----NotificationLocation----").transform.position.y, GameObject.Find("----NotificationLocation----").transform.position.z), Quaternion.identity).gameObject;
+        notifyBar = Instantiate(newNotificationObject, GameObject.Find("----NotificationLocation----").transform.position, Quaternion.identity).gameObject;
         notifyBar.GetComponent<DisplayNotifier>().displayText = displayText;
     }
     void RemoveALLRooms()

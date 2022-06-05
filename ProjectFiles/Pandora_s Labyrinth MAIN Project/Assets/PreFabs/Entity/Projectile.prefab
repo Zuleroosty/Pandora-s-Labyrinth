@@ -102,7 +102,7 @@ MonoBehaviour:
   metalFX: {fileID: 8300000, guid: 3dd15a31bb5a6c249a526d70ef55dead, type: 3}
   meatFX1: {fileID: 8300000, guid: ed374090332160a438c1e1a5e3b1daeb, type: 3}
   meatFX2: {fileID: 8300000, guid: aa685aeadfb9f584a9e4b512bab3d048, type: 3}
-  fireballFX: {fileID: 0}
+  fireballFX: {fileID: 8300000, guid: fd421ad875cdd5b4d965f959e8220516, type: 3}
   visSpriteObject: {fileID: 7182480688404460578}
   enemyObject: {fileID: 0}
   moveToPosition: {x: 0, y: 0, z: 0}

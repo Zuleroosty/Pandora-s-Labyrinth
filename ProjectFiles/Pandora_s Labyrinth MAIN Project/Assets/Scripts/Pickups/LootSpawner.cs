@@ -4,57 +4,59 @@ using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
 {
-    public GameObject xpSpawnObject, goldSpawnObject, healthDrop, bombDrop, newXpObject;
-    public int healthChance, ammoChance, chanceOutcome, xpDrop, goldDrop;
-    public bool isDisabled;
-    int randomNum;
+    public GameObject xpPrefab, goldPrefab;
+    public float xpDrop;
+    int randNum;
 
     private void Start()
     {
-        if (xpDrop <= 0) xpDrop = Random.Range(1, 4);
-        goldDrop = Random.Range(3, 6);
+        xpDrop *= (1 + GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel);
     }
 
     private void OnDestroy()
     {
-        if (GameObject.Find("----PlayerObjectParent----") != null && !isDisabled)
+        if (GameObject.Find("----PlayerObjectParent----") != null)
         {
-            newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 1) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 2) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 3) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 4) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 5) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 6) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 7) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 8) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (xpDrop > 9) newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            if (GameObject.Find("BossEnemy") != null)
+            if (xpDrop > 0) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 1) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 2) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 3) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 4) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 5) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 6) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 7) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 8) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 9) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 10) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 11) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 12) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 13) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 14) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 15) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 16) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 17) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 18) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 19) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 20) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 21) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 22) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 23) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 24) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 25) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 26) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 27) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 28) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+            if (xpDrop > 29) Instantiate(xpPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+
+            if (this.name.Contains("Boss"))
             {
-                if (this.name.Contains("Boss"))
-                {
-                    if (goldDrop > 1) Instantiate(goldSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                    if (goldDrop > 2) Instantiate(goldSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                    if (goldDrop > 3) Instantiate(goldSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                    if (goldDrop > 4) Instantiate(goldSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                    if (goldDrop > 5) Instantiate(goldSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                }
-                else
-                {
-                    newXpObject = Instantiate(xpSpawnObject, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-                    DropHealthBomb();
-                }
+                // AMOUNT OF GOLD TO DROP
+                randNum = Random.Range(1, 4);
+                if (randNum > 0) Instantiate(goldPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+                if (randNum > 1) Instantiate(goldPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+                if (randNum > 2) Instantiate(goldPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+                if (randNum > 3) Instantiate(goldPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
             }
-        }
-    }
-    void DropHealthBomb() // ARMOUR - MINOTAUR ONLY
-    {
-        randomNum = Random.Range(0, 101);
-        if (randomNum <= 45) Instantiate(bombDrop, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-        else
-        {
-            randomNum -= 45;
-            if (randomNum <= 25) Instantiate(healthDrop, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
         }
     }
 }

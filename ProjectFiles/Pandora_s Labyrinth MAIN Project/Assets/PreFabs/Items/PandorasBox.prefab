@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4361857550479463531}
   - component: {fileID: 2653455014180300519}
   - component: {fileID: 2645584415769675187}
+  - component: {fileID: 5712075946175348692}
   m_Layer: 0
   m_Name: CollisionBox
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MonoBehaviour:
   minotaurObject: {fileID: 2236250856924978717, guid: 7c0bda49395fdfc428b58f693326699f,
     type: 3}
   spawnLocation: {fileID: 4754477545191929866}
+--- !u!114 &5712075946175348692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936807874037072497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f860dbd67f6bfcb4d9e64e48f66c3c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignore: 0
 --- !u!1 &4754477545191929866
 GameObject:
   m_ObjectHideFlags: 0

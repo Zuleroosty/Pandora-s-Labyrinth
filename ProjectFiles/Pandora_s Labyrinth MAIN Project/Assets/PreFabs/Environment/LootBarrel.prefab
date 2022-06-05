@@ -110,6 +110,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 0
   projectileChildMax: 0
   projectileChildID: 0
@@ -131,7 +132,7 @@ MonoBehaviour:
   maxHealth: 0
   damage: 0
   flashTimer: 0
-  hitFX: {fileID: 0}
+  destroyFX: {fileID: 8300000, guid: 2a8f8c2f12f92974c96e7307aaf93d67, type: 3}
   flashDamage: 0
   projectileParent: {fileID: 0}
   medkitObject: {fileID: 4466549535653193468, guid: 27e08141808ea4548a92a1c21cc01fc3,
@@ -140,8 +141,9 @@ MonoBehaviour:
     type: 3}
   goldObject: {fileID: 4105080264975612988, guid: b11da8f04189e2f46838b038d7359015,
     type: 3}
-  dropObject: {fileID: 0}
   xpObject: {fileID: 0}
+  dropObject: {fileID: 8488277138717598952, guid: 43df7f3cd069d214c9cd6bd28575e7c6,
+    type: 3}
 --- !u!114 &8501003215971870346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +282,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 0
+  playerInRange: 0
   objectType: 0
   projectileChildMax: 0
   projectileChildID: 0

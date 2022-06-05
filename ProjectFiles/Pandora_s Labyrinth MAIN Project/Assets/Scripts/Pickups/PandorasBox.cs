@@ -13,7 +13,7 @@ public class PandorasBox : MonoBehaviour
         {
             if (!hasCollected)
             {
-                if (GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
+                if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
                 {
                     hasCollected = true;
                     GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerFXHandler>().PlayPandoraPickup();

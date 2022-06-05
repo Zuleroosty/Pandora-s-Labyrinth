@@ -28,8 +28,9 @@ public class EndMenuHandler : MonoBehaviour
             if (gameManager.gameState == GameManager.state.Win || gameManager.gameState == GameManager.state.Lose || gameManager.gameState == GameManager.state.Quit)
             {
                 GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = 7f;
-
-                transform.localPosition = new Vector3(0, 0, 1.5f); // UPDATE TEXT BASED ON END CONDITION
+                transform.localPosition = new Vector3(0, 0, 1.5f);
+                
+                // UPDATE TEXT BASED ON END CONDITION
                 if (!updateText)
                 {
                     switch (gameManager.gameState)
@@ -85,6 +86,9 @@ public class EndMenuHandler : MonoBehaviour
                 else healthCostText.GetComponent<TextMesh>().text = "Min LVL: " + player.healthRequiredLevel.ToString();
                 if (player.level >= player.speedRequiredLevel) speedCostText.GetComponent<TextMesh>().text = "Cost: " + player.speedCost + " Gold";
                 else speedCostText.GetComponent<TextMesh>().text = "Min LVL: " + player.speedRequiredLevel.ToString();
+
+                // DISPLAY PLAYER SCORE
+                GameObject.Find("ScoreText").GetComponent<TextMesh>().text = statHandler.playerScore.ToString();
             }
             else
             {

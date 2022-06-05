@@ -747,11 +747,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ----PlayerObjectParent----
       objectReference: {fileID: 0}
-    - target: {fileID: 1019555945316964069, guid: d88069478e7703a46bcb2bda9a907bd9,
-        type: 3}
-      propertyPath: ignoreDamage
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1019555945316964070, guid: d88069478e7703a46bcb2bda9a907bd9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1293,6 +1288,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press LShift or A to skip.
       objectReference: {fileID: 0}
+    - target: {fileID: 4855092218529974141, guid: bfacc1374308a9043bff4ef7466728f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 5074374329061764948, guid: bfacc1374308a9043bff4ef7466728f5,
         type: 3}
       propertyPath: m_Name
@@ -1302,6 +1302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: New Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397264368199686401, guid: bfacc1374308a9043bff4ef7466728f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5598684436464365427, guid: bfacc1374308a9043bff4ef7466728f5,
         type: 3}
@@ -1398,26 +1403,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 6966077228775672366, guid: bfacc1374308a9043bff4ef7466728f5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6966077228775672366, guid: bfacc1374308a9043bff4ef7466728f5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6966077228775672366, guid: bfacc1374308a9043bff4ef7466728f5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 6966077228775672366, guid: bfacc1374308a9043bff4ef7466728f5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.54
-      objectReference: {fileID: 0}
     - target: {fileID: 7060275538367580369, guid: bfacc1374308a9043bff4ef7466728f5,
         type: 3}
       propertyPath: m_Color.a
@@ -1462,6 +1447,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472359473627235388, guid: bfacc1374308a9043bff4ef7466728f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8531622664530481579, guid: bfacc1374308a9043bff4ef7466728f5,
         type: 3}
@@ -1612,6 +1602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '>>----MainMenu----<<'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114270530835925388, guid: d82d24aff15673748b08fd5cc4a250ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8114270530835925391, guid: d82d24aff15673748b08fd5cc4a250ae,
         type: 3}

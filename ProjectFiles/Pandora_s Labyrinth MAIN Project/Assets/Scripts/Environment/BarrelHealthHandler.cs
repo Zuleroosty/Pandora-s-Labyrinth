@@ -5,12 +5,11 @@ using UnityEngine;
 public class BarrelHealthHandler : MonoBehaviour
 {
     public float health, maxHealth, damage, flashTimer;
-    public AudioClip hitFX;
+    public AudioClip destroyFX;
     SpriteRenderer projectileSprite;
     Color thisColour;
     public bool flashDamage;
-    public GameObject projectileParent, medkitObject, bombObject , goldObject, dropObject, xpObject;
-    PlayerController playerCon;
+    public GameObject projectileParent, medkitObject, bombObject , goldObject, xpObject, dropObject;
     int childID, childMax, randNum;
 
     private void Start()
@@ -21,47 +20,45 @@ public class BarrelHealthHandler : MonoBehaviour
         maxHealth = 75;
         health = maxHealth;
 
-        randNum = Random.Range(0, 101);
+        // RANDOMLY DESTROY ON START TO BALANCE AMOUNT OF IN-WORLD OBJECTS
+        randNum = Random.Range(0, 101); // 50% CHANCE
         if (randNum > 50)
         {
-            randNum = Random.Range(0, 101);
-            if (randNum > 75)
+            randNum = Random.Range(0, 101); // RANDOMISE AGAIN FOR BETTER RESULTS
+            if (randNum > 75) // 75% CHANCE
             {
                 if (!transform.parent.parent.gameObject.name.Contains("Spawn")) Destroy(gameObject);
+            }
+        }
+
+        // RANDOMISED DROP ON DESTROY [ BOMB 35% - POTION 30% - XP 20% - NOTHING 12% - GOLD 3% ]
+        randNum = Random.Range(0, 101);
+        if (randNum <= 35) dropObject = bombObject;
+        else
+        {
+            randNum -= 35;
+            if (randNum <= 30) dropObject = medkitObject;
+            else
+            {
+                randNum -= 30;
+                if (randNum <= 20) dropObject = xpObject;
+                else
+                {
+                    randNum -= 20;
+                    if (randNum <= 12) dropObject = null;
+                    else
+                    {
+                        randNum -= 12;
+                        if (randNum <= 3) dropObject = goldObject;
+                    }
+                }
             }
         }
     }
 
     private void Update()
     {
-        if (playerCon == null) playerCon = GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>();
-        else
-        {
-            if (playerCon.health < playerCon.maxHealth / 4) dropObject = medkitObject;
-            else
-            {
-                if (playerCon.totalMedkits == 3) dropObject = bombObject;
-                else if (playerCon.totalBombs == 3) dropObject = medkitObject;
-                else
-                {
-                    randNum = Random.Range(0, 101);
-                    if (randNum <= 65) dropObject = medkitObject;
-                    else
-                    {
-                        randNum -= 65;
-                        if (randNum <= 30) dropObject = bombObject;
-                        else
-                        {
-                            randNum -= 30;
-                            if (randNum <= 5) dropObject = goldObject;
-                            else dropObject = xpObject;
-                        }
-                    }
-                }
-            }
-        }
-
-        ProjectileCollisionTest();
+        if (projectileParent.transform.childCount > 0) ProjectileCollisionTest(); // TEST OF COLLISION ONLY WHEN PROJECTILE IS PRESENT
 
         if (flashDamage)
         {
@@ -81,13 +78,14 @@ public class BarrelHealthHandler : MonoBehaviour
         health -= damageAmount;
         if (health <= 0)
         {
-            Instantiate(dropObject, new Vector3(transform.position.x, transform.position.y - 0.75f, 0), Quaternion.identity);
+            if (dropObject != null) Instantiate(dropObject, new Vector3(transform.position.x, transform.position.y - 0.75f, 0), Quaternion.identity);
+            GameObject.Find(">GameManager<").GetComponent<GameManager>().SpawnNew3DFX(destroyFX, transform.position);
             Destroy(this.gameObject);
         }
     }
     private void ProjectileCollisionTest()
     {
-        if (!flashDamage) // PROJECTILE (BULLET)
+        if (!flashDamage) // PROJECTILE (PLAYER SPEAR) COLLISION TEST
         {
             if (childID < childMax && childMax == projectileParent.transform.childCount)
             {

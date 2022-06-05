@@ -38,6 +38,7 @@ public class LevelHandler : MonoBehaviour
         gameManager.spawnNextLvl = false;
         gameManager.quickStart = true;
         gameManager.gameState = GameManager.state.Reset;
+        GetComponent<StatHandler>().ResetStats();
     }
     void UpdateStats()
     {

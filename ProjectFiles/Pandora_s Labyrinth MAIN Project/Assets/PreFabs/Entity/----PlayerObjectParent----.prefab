@@ -379,6 +379,7 @@ MonoBehaviour:
   currentArmour: 0
   health: 0
   maxHealth: 0
+  healAmount: 0
   healthCooldown: 0
   healthIncrease: 0
   stamina: 0
@@ -386,6 +387,8 @@ MonoBehaviour:
   staminaRegenTimer: 0
   staminaCooldown: 0
   boostTimer: 0
+  potionCooldown: 0
+  bombCooldown: 0
   blockStaminaRegen: 0
   activateBoost: 0
   canRegenHealth: 0
@@ -747,7 +750,7 @@ GameObject:
   - component: {fileID: 8267868459998780125}
   - component: {fileID: 1092861037841293309}
   m_Layer: 0
-  m_Name: JoystickInput
+  m_Name: JoystickDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764488556627107917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.79, y: -0, z: -0.60972255}
+  m_LocalPosition: {x: 0.79, y: -0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1019555945316964070}

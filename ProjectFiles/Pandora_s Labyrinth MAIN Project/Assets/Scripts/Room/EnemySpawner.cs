@@ -46,7 +46,6 @@ public class EnemySpawner : MonoBehaviour
                             if (randNum <= 15) bossEnemySpawned = Instantiate(rangedPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                         }
                     }
-                    if (bossEnemySpawned != null) bossEnemySpawned.gameObject.GetComponent<LootSpawner>().isDisabled = true;
                     randomTimer = Random.Range(60, 121);
                     timer = 0;
                 }

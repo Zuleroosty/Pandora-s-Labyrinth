@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public int delayTimer, flashTimer, speedCost, speedRequiredLevel;
     public string infoTextDisplay;
     public bool flashDamage, ignoreDamage, hasPandorasBox, inCombat, isColliding, isMoving;
+
     GameManager gameManagerScript;
     SpriteRenderer playerSprite;
     Color thisColour;
@@ -27,8 +28,7 @@ public class PlayerController : MonoBehaviour
     public armour currentArmour;
 
     // Stat Variables
-    public float health, maxHealth, healthCooldown, healthIncrease;
-    public float stamina, maxStamina, staminaRegenTimer, staminaCooldown, boostTimer;
+    public float health, maxHealth, healAmount, healthCooldown, healthIncrease, stamina, maxStamina, staminaRegenTimer, staminaCooldown, boostTimer, potionCooldown, bombCooldown;
     public bool blockStaminaRegen, activateBoost, canRegenHealth;
     public float shield, maxShield;
     public int gold, healthCost, healthRequiredLevel;
@@ -94,13 +94,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // UPDATE VALUES ON ENTER NEXT LEVEL
+        // UPDATE VALUES ON NEW LEVEL
         if (gameManagerScript.gameState == GameManager.state.Start)
         {
             hasPandorasBox = false;
             health = maxHealth;
             stamina = maxStamina;
             speed = speedDefault;
+            healAmount = maxHealth / 3;
             healthCooldown = 0;
             staminaCooldown = 0;
             transform.position = new Vector3(0, 0, 0);
@@ -109,7 +110,10 @@ public class PlayerController : MonoBehaviour
         // ENABLED ONLY DURING PLAY
         if (gameManagerScript.gameState == GameManager.state.InGame)
         {
+            // DEFAULT MOVEMENT WHEN NO INPUT DETECTED
             velocity = new Vector3(0, 0, 0);
+
+            // CUSTOM FUNCTIONS
             UpdateSpearSprite();
             RegenAndCooldowns();
 
@@ -117,13 +121,13 @@ public class PlayerController : MonoBehaviour
             if (xp >= maxXp)
             {
                 xp -= maxXp;
-                maxXp *= 1.2f;
+                maxXp *= 1.2f; // +20% REQUIRED XP PER LEVEL UP
                 level++;
                 GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("LEVEL UP", 0);
                 GetComponent<PlayerFXHandler>().PlayLevelUp();
             }
 
-            //----HEALTH & FEEDBACK--------
+            //----HEALTH & DAMAGE FEEDBACK--------
             if (health <= 0)
             {
                 gameManagerScript.gameState = GameManager.state.Lose;
@@ -146,11 +150,10 @@ public class PlayerController : MonoBehaviour
             if (activateBoost)
             {
                 blockStaminaRegen = true;
-                speed = speedDefault + 0.15f;
-                if (boostTimer < 20) boostTimer++;
-                if (boostTimer >= 20)
+                speed = speedDefault * 2.5f;
+                if (boostTimer < 25) boostTimer++;
+                if (boostTimer >= 25)
                 {
-                    staminaCooldown = 0;
                     boostTimer = 0;
                     activateBoost = false;
                 }
@@ -186,30 +189,15 @@ public class PlayerController : MonoBehaviour
     }
     private void RegenAndCooldowns()
     {
-        // SHOOTING COOLDOWN
-        if (projectileCooldown < maxProjectileCooldown)
-        {
-            projectileCooldown++;
-        }
-        // TRIPLE SHOT COOLDOWN
-        if (powerShot)
-        {
-            powerShotCooldown++;
-            if (powerShotCooldown >= 240)
-            {
-                powerShot = false;
-            }
-        }
         // STAMINA REGENERATION
-        if (!blockStaminaRegen && stamina < maxStamina)
-        {
-            staminaCooldown++;
-            if (staminaCooldown >= 45)
-            {
-                stamina += 1.25f;
-            }
-        }
-        else if (stamina > maxStamina) stamina = maxStamina;
+        if (staminaCooldown >= 45 && stamina < maxStamina && !blockStaminaRegen) stamina += 1.25f;
+
+        // COOLDOWNS - MAINLY TO STOP DOUBLE USAGE INGAME OR WHEN CHANGING STATES
+        if (bombCooldown < 45) bombCooldown++;
+        if (potionCooldown < 45) potionCooldown++;
+        if (staminaCooldown < 45) staminaCooldown++;
+        if (powerShotCooldown < 240) powerShotCooldown++;
+        if (projectileCooldown < maxProjectileCooldown) projectileCooldown++;
     }
     private void UpdateSpearSprite() // UPDATE SPEAR SPRITE AND COOLDOWN TIME
     {
@@ -240,6 +228,7 @@ public class PlayerController : MonoBehaviour
     private void SpawnProjectile(int fireType)
     {
         GetComponent<PlayerFXHandler>().PlayThrowSpear();
+
         //-----PROJECTILE SPAWNING---------
         ProjectileMovement projectileManager;
         newProjectile = Instantiate(projectilePrefab, GameObject.Find("ProjectileSpawn").transform.position, Quaternion.identity);
@@ -265,6 +254,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         //---------------------------------
+
         GameObject.Find(">GameManager<").GetComponent<StatHandler>().spearsThrown++;
     }
 
@@ -280,22 +270,20 @@ public class PlayerController : MonoBehaviour
     }
     public void UsePotion()
     {
-        if (health < maxHealth && totalMedkits > 0)
+        if (totalMedkits > 0 && health < maxHealth)
         {
-            if ((health + (maxHealth / 3)) < maxHealth)
-            {
-                health += (maxHealth / 3);
-            }
+            GetComponent<PlayerFXHandler>().PlayDrinkPotion();
+            GameObject.Find(">GameManager<").GetComponent<StatHandler>().potionsDrank++;
+            if ((health + healAmount) < maxHealth) health += healAmount;
             else health = maxHealth;
             totalMedkits--;
-            GameObject.Find(">GameManager<").GetComponent<StatHandler>().potionsDrank++;
-            GetComponent<PlayerFXHandler>().PlayDrinkPotion();
         }
     }
     public void DropBomb()
     {
-        if (totalBombs > 0)
+        if (totalBombs > 0 && bombCooldown >= 45)
         {
+            bombCooldown = 0;
             totalBombs--;
             Instantiate(radialBurstObject, new Vector3(transform.position.x - 0.2f, transform.position.y - 0.75f, 0), Quaternion.identity);
             GameObject.Find(">GameManager<").GetComponent<StatHandler>().bombsDropped++;
@@ -305,19 +293,18 @@ public class PlayerController : MonoBehaviour
     {
         if (projectileCooldown >= maxProjectileCooldown)
         {
-            GameObject.Find("SpearSprite").transform.localPosition = new Vector3(0.15f, -0.045f, 0.5f);
             projectileCooldown = 0;
+            GameObject.Find("SpearSprite").transform.localPosition = new Vector3(0.15f, -0.045f, 0.5f);
             shootLocation = new Vector3(0, 0, 0);
             SpawnProjectile(0);
         }
     }
     public void TripleShot()
     {
-        if (!powerShot)
+        if (powerShotCooldown >= 240)
         {
-            GameObject.Find("SpearSprite").transform.localPosition = new Vector3(0.15f, -0.045f, 0.5f);
             powerShotCooldown = 0;
-            powerShot = true;
+            GameObject.Find("SpearSprite").transform.localPosition = new Vector3(0.15f, -0.045f, 0.5f);
             SpawnProjectile(1);
             SpawnProjectile(2);
             SpawnProjectile(3);
@@ -325,15 +312,12 @@ public class PlayerController : MonoBehaviour
     }
     public void UseBoost()
     {
-        if (stamina >= maxStamina / 2 && isMoving)
+        if ((stamina - (maxStamina * 0.5f)) > 0 && isMoving && !isColliding && !activateBoost)
         {
-            if (!activateBoost && !isColliding)
-            {
-                GetComponent<PlayerFXHandler>().PlaySprintBoost();
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().pulseCameraOut = true;
-                stamina -= maxStamina / 2;
-                activateBoost = true;
-            }
+            GetComponent<PlayerFXHandler>().PlaySprintBoost();
+            GameObject.Find("Main Camera").GetComponent<CameraFollow>().pulseCameraOut = true;
+            stamina -= (maxStamina * 0.5f);
+            activateBoost = true;
         }
     }
 }
