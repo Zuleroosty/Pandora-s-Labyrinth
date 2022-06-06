@@ -16,8 +16,10 @@ public class BasicAttack : MonoBehaviour
         playerSprite = GameObject.Find("PCollision").GetComponent<SpriteRenderer>();
         attackRadius = GetComponent<SpriteRenderer>();
 
-        if (this.name.Contains("Fast")) damage = 3;
-        else damage = 5;
+        if (this.name.Contains("Fast")) damage = 55;
+        else if (this.name.Contains("Normal")) damage = 15;
+        else if (this.name.Contains("Boss")) damage = 62.5f;
+        else damage = 15;
     }
 
     // Update is called once per frame
@@ -34,12 +36,14 @@ public class BasicAttack : MonoBehaviour
                 }
                 else
                 {
-                    if (attackTimer < 29) attackTimer++;
-                    if (attackTimer >= 29)
+                    if (attackTimer < 60) attackTimer++;
+                    if (attackTimer >= 60)
                     {
-                        playerObject.GetComponent<PlayerController>().TakeDamage(damage);
-                        isCooldown = false;
                         attackTimer = 0;
+                        isCooldown = false;
+                        playerObject.GetComponent<PlayerController>().TakeDamage(damage);
+                        playerObject.transform.position += (playerObject.transform.position - transform.position);
+                        playerObject.transform.position = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y, 0);
                     }
                 }
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    public AudioClip woodFX, stoneFX, metalFX, meatFX1, meatFX2, fireballFX;
+    public AudioClip woodFX, stoneFX, metalFX, meatFX1, meatFX2, fireballFX, fireFX;
     public GameObject visSpriteObject, enemyObject;
     public Vector3 moveToPosition, velocity;
     public Sprite collideSprite, blueFireSprite, redFireSprite, magentaFireSprite, greenFireSprite;
@@ -29,27 +29,27 @@ public class ProjectileMovement : MonoBehaviour
                 visSpriteObject.GetComponent<SpriteRenderer>().sprite = GameObject.Find("SpearSprite").GetComponent<SpriteRenderer>().sprite;
                 switch (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().currentSpear)
                 {
-                    case PlayerController.spear.lvl0:
+                    case 0:
                         if (isPowershot) projectileDamage = 55 * (1 + powerShotOffset);
                         else projectileDamage = 55;
                         speedAdjuster = 2f;
                         break;
-                    case PlayerController.spear.lvl1:
+                    case 1:
                         if (isPowershot) projectileDamage = 75 * (1 + powerShotOffset);
                         else projectileDamage = 75;
                         speedAdjuster = 1.75f;
                         break;
-                    case PlayerController.spear.lvl2:
+                    case 2:
                         if (isPowershot) projectileDamage = 95 * (1 + powerShotOffset);
                         else projectileDamage = 95;
                         speedAdjuster = 1.5f;
                         break;
-                    case PlayerController.spear.lvl3:
+                    case 3:
                         if (isPowershot) projectileDamage = 115 * (1 + powerShotOffset);
                         else projectileDamage = 115;
                         speedAdjuster = 1.25f;
                         break;
-                    case PlayerController.spear.lvl4:
+                    case 4:
                         if (isPowershot) projectileDamage = 135 * (1 + powerShotOffset);
                         else projectileDamage = 135;
                         speedAdjuster = 1f;
@@ -74,7 +74,6 @@ public class ProjectileMovement : MonoBehaviour
             }
             else
             {
-                projectileDamage = Random.Range(11, 16);
                 transform.localScale = new Vector3(0.35f, 0.35f, 5);
                 switch (fireColour)
                 {
@@ -103,7 +102,7 @@ public class ProjectileMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().sortingOrder = 6;
             destroyTimer = 0;
             if (projectileRange <= 0) projectileRange = 180;
-            if (projectileDamage <= 0) projectileDamage = 43;
+            if (projectileDamage <= 0) projectileDamage = 55;
 
             // Allocate Master Parent in Hierarchy
             transform.parent = GameObject.Find("----ProjectileParent----").transform;

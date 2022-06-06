@@ -20,17 +20,11 @@ public class PlayerController : MonoBehaviour
     // Levelling/XP
     public float xp, maxXp;
     public int level;
-
-    // Spear/Armour
-    public enum spear { lvl0, lvl1, lvl2, lvl3, lvl4 }
-    public spear currentSpear;
-    public enum armour { lvl0, lvl1, lvl2, lvl3, lvl4 }
-    public armour currentArmour;
+    public int currentSpear;
 
     // Stat Variables
     public float health, maxHealth, healAmount, healthCooldown, healthIncrease, stamina, maxStamina, staminaRegenTimer, staminaCooldown, boostTimer, potionCooldown, bombCooldown;
     public bool blockStaminaRegen, activateBoost, canRegenHealth;
-    public float shield, maxShield;
     public int gold, healthCost, healthRequiredLevel;
 
     // Projectile Variables
@@ -42,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public GameObject newProjectile;
     public bool canShoot, demandShoot, reloadRequired, singleShot, forceReload, isReloading, powerShot;
     public int projectileSpeed, totalBombs, maxBombs, totalMedkits, maxMedkits;
-    public float powerShotCooldown, projectileDamage, projectileCooldown, maxProjectileCooldown;
+    public float powerShotCooldown, projectileCooldown, maxProjectileCooldown;
     public Vector3 shootLocation;
 
     // Start is called before the first frame update
@@ -66,14 +60,11 @@ public class PlayerController : MonoBehaviour
         speedDefault = 0.1f;
         speed = speedDefault;
 
-        maxHealth = 650;
+        maxHealth = 450;
         health = maxHealth;
 
         maxStamina = 100;
         stamina = maxStamina;
-
-        maxShield = 4;
-        shield = 0;
 
         level = 0;
         xp = 0;
@@ -84,7 +75,6 @@ public class PlayerController : MonoBehaviour
 
         // Default Weapon Stats
         powerShotCooldown = 240;
-        projectileDamage = 25;
         UpdateSpearSprite();
 
         // Set Spawn Position
@@ -165,6 +155,27 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    public void ResetPlayerStats()
+    {
+        speedIncrease = 0;
+        healthIncrease = 0;
+        healthRequiredLevel = 1;
+        speedRequiredLevel = 1;
+        speedDefault = 0.12f;
+        speed = speedDefault;
+        maxHealth = 450;
+        health = maxHealth;
+        maxStamina = 100;
+        stamina = maxStamina;
+        level = 0;
+        xp = 0;
+        maxXp = 500;
+        maxBombs = 3;
+        maxMedkits = 3;
+        powerShotCooldown = 240;
+        UpdateSpearSprite();
+        transform.position = new Vector3(0, 0, 0);
+    }
     public void StartNewLevel()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -178,8 +189,7 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("HitScreen").GetComponent<HitDisplay>().pulseIn = true;
             flashDamage = true;
             healthCooldown = 120;
-            if (shield > 0) shield--;
-            else if (health - damageAmount > 0)
+            if (health - damageAmount > 0)
             {
                 health -= damageAmount;
                 GameObject.Find(">GameManager<").GetComponent<StatHandler>().damageTaken += damageAmount;
@@ -203,23 +213,23 @@ public class PlayerController : MonoBehaviour
     {
         switch (currentSpear)
         {
-            case spear.lvl0:
+            case 0:
                 maxProjectileCooldown = 25;
                 spearSprite.GetComponent<SpriteRenderer>().sprite = spearLvl0;
                 break;
-            case spear.lvl1:
+            case 1:
                 maxProjectileCooldown = 20;
                 spearSprite.GetComponent<SpriteRenderer>().sprite = spearLvl1;
                 break;
-            case spear.lvl2:
+            case 2:
                 maxProjectileCooldown = 15;
                 spearSprite.GetComponent<SpriteRenderer>().sprite = spearLvl2;
                 break;
-            case spear.lvl3:
+            case 3:
                 maxProjectileCooldown = 10;
                 spearSprite.GetComponent<SpriteRenderer>().sprite = spearLvl3;
                 break;
-            case spear.lvl4:
+            case 4:
                 maxProjectileCooldown = 5;
                 spearSprite.GetComponent<SpriteRenderer>().sprite = spearLvl4;
                 break;

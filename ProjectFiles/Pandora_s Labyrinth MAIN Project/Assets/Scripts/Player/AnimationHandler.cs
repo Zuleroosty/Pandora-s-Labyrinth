@@ -47,10 +47,10 @@ public class AnimationHandler : MonoBehaviour
         }
         else
         {
-            thisAnimator.ResetTrigger("isIdle");
             thisAnimator.ResetTrigger("isMoving");
             thisAnimator.ResetTrigger("walkLeft");
             thisAnimator.ResetTrigger("walkRight");
+            thisAnimator.SetTrigger("isIdle");
         }
     }
     void WalkLeft()

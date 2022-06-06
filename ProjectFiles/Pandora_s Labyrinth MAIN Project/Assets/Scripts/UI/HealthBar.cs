@@ -35,19 +35,19 @@ public class HealthBar : MonoBehaviour
             health = targetObject.GetComponent<EnemyHealthHandler>().health;
             maxHealth = targetObject.GetComponent<EnemyHealthHandler>().maxHealth;
         }
-        else if (isPlayer)
+        if (isPlayer)
         {
             health = targetObject.GetComponent<PlayerController>().health;
             maxHealth = targetObject.GetComponent<PlayerController>().maxHealth;
         }
-        else if (isBarrel)
+        if (isBarrel)
         {
             health = targetObject.GetComponent<BarrelHealthHandler>().health;
             maxHealth = targetObject.GetComponent<BarrelHealthHandler>().maxHealth;
         }
 
         scaleAdjuster.x = health / maxHealth;
-        if (scaleAdjuster.x < 1) transform.localScale = scaleAdjuster;
+        if (scaleAdjuster.x <= 1) transform.localScale = scaleAdjuster;
 
         transform.parent.transform.localScale = spawnScale;
     }

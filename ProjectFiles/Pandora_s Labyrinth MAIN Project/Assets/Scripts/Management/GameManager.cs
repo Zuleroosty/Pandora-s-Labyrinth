@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // PREFABS
-    public GameObject lvlUpNotification, potionNotification, bombNotification, goldNotification, armourNotification, spearNotification, newNotificationObject, objectivePrefab, newObjectiveObject;
-    public GameObject ammoDrop, healthDrop;
-    public GameObject initialRoomPrefab, playerPrefab, roomSpawner, newSpawner;
-    public GameObject newAudioObject, audioPrefab;
+    // UI VARIABLES
+    public int activeNotifications, timelineStage;
+    public string newNotificationText;
+    public bool isGamePaused;
+
+    // GAME SYSTEM/SETTINGS
+    public enum state { GenLevel, Menu, Start, InGame, Lose, Win, Reset, Pause, Quit }
+    public state gameState;
+    public int startDelay;
+    public bool hasMinotaurSpawned, saveGameLoaded;
+
+    // RESET VARIABLES
+    public bool levelReset, readyToStart;
+    int childID, childMax;
+    GameObject roomsMasterParent, roomParent;
 
     // GRID SPAWNING
     public bool fillGrid, spawnNextLvl, quickStart;
     public int upgradeRooms;
-
-    // SHORTCUTS
-    public PermissionsHandler permHandler;
-    public LevelHandler lvlHandler;
 
     // ROOM SPECIFIC
     public GameObject currentRoomParent;
@@ -25,21 +31,14 @@ public class GameManager : MonoBehaviour
     // PLAYER SPECIFIC
     public GameObject playerObject;
 
-    // GAME SYSTEM/SETTINGS
-    public enum state {GenLevel, Menu, Start, InGame, Lose, Win, Reset, Pause, Quit}
-    public state gameState;
-    public int startDelay;
-    public bool hasMinotaurSpawned;
+    // SHORTCUTS
+    public PermissionsHandler permHandler;
+    public LevelHandler lvlHandler;
 
-    // RESET VARIABLES
-    public bool levelReset, readyToStart;
-    int childID, childMax;
-    GameObject roomsMasterParent, roomParent;
-
-    // UI VARIABLES
-    public int activeNotifications, timelineStage;
-    public string newNotificationText;
-    public bool isGamePaused;
+    // PREFABS
+    public GameObject lvlUpNotification, potionNotification, bombNotification, goldNotification, armourNotification, spearNotification, newNotificationObject, objectivePrefab, newObjectiveObject;
+    public GameObject playerPrefab, roomSpawner, newSpawner;
+    public GameObject newAudioObject, audioPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +51,8 @@ public class GameManager : MonoBehaviour
 
         gameState = state.GenLevel;
 
+        
+
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
     }
@@ -60,6 +61,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (currentRoomParent != null) permHandler.canMove = true;
+        if (gameState == state.Menu)
+        {
+            if (PlayerPrefs.GetInt("saveGameAvaliable") == 1)
+            {
+                GetComponent<SaveGameHandler>().LoadInfoFromFile();
+                saveGameLoaded = true;
+            }
+            else saveGameLoaded = false;
+        }
         if (gameState == state.Start)
         {
             if (startDelay < 15) startDelay++;
@@ -87,8 +97,7 @@ public class GameManager : MonoBehaviour
                 gameState = state.GenLevel;
                 if (!spawnNextLvl)
                 {
-                    if (GameObject.Find("----PlayerObjectParent----") != null) Destroy(GameObject.Find("----PlayerObjectParent----"));
-                    Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().ResetPlayerStats();
                     roomLevel = 0;
                 }
                 else playerObject.GetComponent<PlayerController>().StartNewLevel();

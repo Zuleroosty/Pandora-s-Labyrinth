@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 3548591206230789024}
   - component: {fileID: 6749089540621061367}
   - component: {fileID: 1965016815905825396}
+  - component: {fileID: 3041418954276815662}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -196,6 +197,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6fb7daa1c843843806a9c06e87cf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeNotifications: 0
+  timelineStage: 0
+  newNotificationText: 
+  isGamePaused: 0
+  gameState: 0
+  startDelay: 0
+  hasMinotaurSpawned: 0
+  levelReset: 0
+  readyToStart: 0
+  fillGrid: 0
+  spawnNextLvl: 0
+  quickStart: 0
+  upgradeRooms: 0
+  currentRoomParent: {fileID: 0}
+  roomLevel: 0
+  playerObject: {fileID: 0}
+  permHandler: {fileID: 0}
+  lvlHandler: {fileID: 0}
   lvlUpNotification: {fileID: 6593455111923047828, guid: 26d3dfbf35f67ff42876788adad7fc93,
     type: 3}
   potionNotification: {fileID: 24939080453947158, guid: d4326cf39c5a5db40a8e67b3984e7038,
@@ -212,12 +231,6 @@ MonoBehaviour:
   objectivePrefab: {fileID: 8605996116382891526, guid: 0270f9e49a3e9934c819e7f99bae15c0,
     type: 3}
   newObjectiveObject: {fileID: 0}
-  ammoDrop: {fileID: 5342843315475600748, guid: e32bee96fdd0349499e173f1b44a6589,
-    type: 3}
-  healthDrop: {fileID: 4466549535653193468, guid: 27e08141808ea4548a92a1c21cc01fc3,
-    type: 3}
-  initialRoomPrefab: {fileID: 4417718517608021763, guid: 239ad14156787c2459ca3d05dc3e7147,
-    type: 3}
   playerPrefab: {fileID: 1019555945316964068, guid: d88069478e7703a46bcb2bda9a907bd9,
     type: 3}
   roomSpawner: {fileID: 3362890598834648981, guid: 8d83e8533ec7bc647bf421442dd14311,
@@ -226,24 +239,6 @@ MonoBehaviour:
   newAudioObject: {fileID: 0}
   audioPrefab: {fileID: 4910223486480936739, guid: 57aeba7bd1b066c4cbf9a40439d1fdc7,
     type: 3}
-  fillGrid: 0
-  spawnNextLvl: 0
-  quickStart: 0
-  upgradeRooms: 0
-  permHandler: {fileID: 0}
-  lvlHandler: {fileID: 0}
-  currentRoomParent: {fileID: 0}
-  roomLevel: 0
-  playerObject: {fileID: 0}
-  gameState: 0
-  startDelay: 0
-  hasMinotaurSpawned: 0
-  levelReset: 0
-  readyToStart: 0
-  activeNotifications: 0
-  timelineStage: 0
-  newNotificationText: 
-  isGamePaused: 0
 --- !u!114 &2419236084910707313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +303,7 @@ MonoBehaviour:
   bombsDropped: 0
   potionsDrank: 0
   playerLevel: 0
+  playerScore: 0
   roomsDiscovered: 0
   roomsEntered: 0
   levelsCompleted: 0
@@ -448,3 +444,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3041418954276815662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419236084910707312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa7779cbd5a2d943b7bf5629dd0ea81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

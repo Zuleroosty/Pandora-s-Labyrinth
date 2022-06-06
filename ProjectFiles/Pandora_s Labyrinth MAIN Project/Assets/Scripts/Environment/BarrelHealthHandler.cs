@@ -31,20 +31,20 @@ public class BarrelHealthHandler : MonoBehaviour
             }
         }
 
-        // RANDOMISED DROP ON DESTROY [ BOMB 35% - POTION 30% - XP 20% - NOTHING 12% - GOLD 3% ]
+        // RANDOMISED DROP ON DESTROY [ BOMB 31% - POTION 30% - XP 24% - NOTHING 12% - GOLD 3% ]
         randNum = Random.Range(0, 101);
-        if (randNum <= 35) dropObject = bombObject;
+        if (randNum <= 31) dropObject = bombObject;
         else
         {
-            randNum -= 35;
+            randNum -= 31;
             if (randNum <= 30) dropObject = medkitObject;
             else
             {
                 randNum -= 30;
-                if (randNum <= 20) dropObject = xpObject;
+                if (randNum <= 24) dropObject = xpObject;
                 else
                 {
-                    randNum -= 20;
+                    randNum -= 24;
                     if (randNum <= 12) dropObject = null;
                     else
                     {

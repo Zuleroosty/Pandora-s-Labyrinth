@@ -10,7 +10,7 @@ public class EndMenuHandler : MonoBehaviour
     GameManager gameManager;
     StatHandler statHandler;
     PlayerController player;
-    bool updateText;
+    bool updateText, updateSaveFile;
 
     private void Start()
     {
@@ -29,7 +29,23 @@ public class EndMenuHandler : MonoBehaviour
             {
                 GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = 7f;
                 transform.localPosition = new Vector3(0, 0, 1.5f);
+
                 
+                // SAVE GAME & PLAYER STATS
+                if (!updateSaveFile)
+                {
+                    switch (gameManager.gameState)
+                    {
+                        case GameManager.state.Win:
+                            gameManager.GetComponent<SaveGameHandler>().SaveInfoToFile();
+                            break;
+                        case GameManager.state.Lose:
+                            PlayerPrefs.DeleteAll();
+                            break;
+                    }
+                    updateSaveFile = true;
+                }
+
                 // UPDATE TEXT BASED ON END CONDITION
                 if (!updateText)
                 {
@@ -94,6 +110,7 @@ public class EndMenuHandler : MonoBehaviour
             {
                 transform.localPosition = new Vector3(-30, 0, 0);
                 updateText = false;
+                updateSaveFile = false;
             }
         }
     }

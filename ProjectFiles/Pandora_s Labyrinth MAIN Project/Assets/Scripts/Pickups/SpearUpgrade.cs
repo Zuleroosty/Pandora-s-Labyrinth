@@ -31,46 +31,46 @@ public class SpearUpgrade : MonoBehaviour
             transform.position = spawnPoint;
             if (!hasCollected)
             {
-                if (GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
+                AnimateSpear();
+                if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(GetComponent<SpriteRenderer>().bounds))
                 {
                     hasCollected = true;
                     playerScript.gameObject.GetComponent<PlayerFXHandler>().PlaySpearPickup();
                     switch (playerScript.currentSpear)
                     {
-                        case PlayerController.spear.lvl0:
-                            playerScript.currentSpear = PlayerController.spear.lvl1;
+                        case 0:
+                            playerScript.currentSpear = 1;
                             GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 2", 4);
                             break;
-                        case PlayerController.spear.lvl1:
-                            playerScript.currentSpear = PlayerController.spear.lvl2;
+                        case 1:
+                            playerScript.currentSpear = 2;
                             GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 3", 4);
                             break;
-                        case PlayerController.spear.lvl2:
-                            playerScript.currentSpear = PlayerController.spear.lvl3;
+                        case 2:
+                            playerScript.currentSpear = 3;
                             GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 4", 4);
                             break;
-                        case PlayerController.spear.lvl3:
-                            playerScript.currentSpear = PlayerController.spear.lvl4;
+                        case 3:
+                            playerScript.currentSpear = 4;
                             GameObject.Find(">GameManager<").GetComponent<GameManager>().NewNotification("Spear Lvl 5", 4);
                             break;
                     }
                 }
                 switch (playerScript.currentSpear)
                 {
-                    case PlayerController.spear.lvl0:
+                    case 0:
                         thisSprite.GetComponent<SpriteRenderer>().sprite = spearLvl1;
                         break;
-                    case PlayerController.spear.lvl1:
+                    case 1:
                         thisSprite.GetComponent<SpriteRenderer>().sprite = spearLvl2;
                         break;
-                    case PlayerController.spear.lvl2:
+                    case 2:
                         thisSprite.GetComponent<SpriteRenderer>().sprite = spearLvl3;
                         break;
-                    case PlayerController.spear.lvl3:
+                    case 3:
                         thisSprite.GetComponent<SpriteRenderer>().sprite = spearLvl4;
                         break;
                 }
-                AnimateSpear();
             }
             else
             {

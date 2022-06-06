@@ -44,42 +44,7 @@ public class LevelHandler : MonoBehaviour
     {
         if (playerScript != null)
         {
-            switch (playerScript.currentArmour)
-            {
-                case PlayerController.armour.lvl0:
-                    playerArmourLvl = 0;
-                    break;
-                case PlayerController.armour.lvl1:
-                    playerArmourLvl = 1;
-                    break;
-                case PlayerController.armour.lvl2:
-                    playerArmourLvl = 2;
-                    break;
-                case PlayerController.armour.lvl3:
-                    playerArmourLvl = 3;
-                    break;
-                case PlayerController.armour.lvl4:
-                    playerArmourLvl = 4;
-                    break;
-            }
-            switch (playerScript.currentSpear)
-            {
-                case PlayerController.spear.lvl0:
-                    playerSpearLvl = 0;
-                    break;
-                case PlayerController.spear.lvl1:
-                    playerSpearLvl = 1;
-                    break;
-                case PlayerController.spear.lvl2:
-                    playerSpearLvl = 2;
-                    break;
-                case PlayerController.spear.lvl3:
-                    playerSpearLvl = 3;
-                    break;
-                case PlayerController.spear.lvl4:
-                    playerSpearLvl = 4;
-                    break;
-            }
+            playerSpearLvl = playerScript.currentSpear;
         }
         else playerScript = GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>();
     }

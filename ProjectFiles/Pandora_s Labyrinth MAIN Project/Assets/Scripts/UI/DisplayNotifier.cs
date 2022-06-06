@@ -15,7 +15,7 @@ public class DisplayNotifier : MonoBehaviour
         transform.parent = GameObject.Find("----NotificationLocation----").transform;
         childMax = transform.parent.childCount;
         thisID = transform.parent.childCount;
-        boxPosY = (thisID * 1.5f);
+        transform.localPosition = new Vector3(transform.localPosition.x, (thisID * -0.15f), transform.localPosition.z);
         spawnPos = transform.localPosition;
         travelDist = -1.6f;
         displayTimeTotal = 60;
@@ -29,9 +29,9 @@ public class DisplayNotifier : MonoBehaviour
             if (!transform.parent.name.Contains("KillBox"))
             {
                 UpdateID();
-                boxPosY = (thisID * -1.5f); // UPDATE LOCATION BASED ON ID
-                if (boxPosY < transform.localPosition.y) transform.localPosition -= new Vector3(0, 0.1f, 0);
-                if (boxPosY > transform.localPosition.y) transform.localPosition += new Vector3(0, 0.1f, 0);
+                boxPosY = (thisID * -0.15f); // UPDATE LOCATION BASED ON ID
+                if (boxPosY < transform.localPosition.y) transform.localPosition -= new Vector3(0, 0.005f, 0);
+                if (boxPosY > transform.localPosition.y) transform.localPosition += new Vector3(0, 0.005f, 0);
             }
             if (!fadeOut)
             {
@@ -45,7 +45,7 @@ public class DisplayNotifier : MonoBehaviour
                 if (displayTime >= displayTimeTotal)
                 {
                     if (!transform.parent.name.Contains("KillBox")) transform.parent = GameObject.Find("----NotiKillBox----").transform;
-                    if (transform.localPosition.x < 0) transform.localPosition += new Vector3(0.035f, 0, 0);
+                    if (transform.localPosition.x < 0) transform.position += new Vector3(0.15f, 0, 0);
                     else Destroy(gameObject);
                 }
             }
@@ -59,7 +59,7 @@ public class DisplayNotifier : MonoBehaviour
         {
             if (GameObject.Find("----NotificationLocation----").transform.GetChild(childID).gameObject == this.gameObject)
             {
-                thisID = childID - 1;
+                thisID = childID;
             }
         }
         else

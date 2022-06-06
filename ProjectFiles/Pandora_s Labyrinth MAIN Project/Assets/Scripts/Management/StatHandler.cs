@@ -9,15 +9,15 @@ public class StatHandler : MonoBehaviour
     public int playerLevel, playerScore, roomsDiscovered, roomsEntered, levelsCompleted;
     public float currentXP, maxXP, damageDealt, damageTaken;
     public string playtimeString, xpString;
+    public int frame, second, minute, hour;
 
     string secondString, minuteString, hourString;
-    int frame, second, minute, hour;
     bool hasReset;
 
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Pause) GameObject.Find("DisplayScoreText").GetComponent<TextMesh>().text = "SCORE: " + playerScore.ToString();
+        if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Pause && GameObject.Find("PauseScoreText") != null) GameObject.Find("PauseScoreText").GetComponent<TextMesh>().text = "SCORE: " + playerScore.ToString();
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
             //-------------------------------------------------------------------

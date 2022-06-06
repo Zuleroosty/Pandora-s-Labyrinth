@@ -642,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rand1: {fileID: 8300000, guid: 630547d24467f9444a109dd35918de92, type: 3}
   rand2: {fileID: 8300000, guid: bcd49242ca0a4d545a42b409f8abdae9, type: 3}
+  fireBallFX: {fileID: 8300000, guid: fa08ef5ce2a4ca74a89a98d9972ab5da, type: 3}
   playerRadius: {fileID: 3081767726495983816}
   player: {fileID: 0}
   projectilePrefab: {fileID: 607562667007940462, guid: 67882616ff0e47341b6b3705581d4dfa,

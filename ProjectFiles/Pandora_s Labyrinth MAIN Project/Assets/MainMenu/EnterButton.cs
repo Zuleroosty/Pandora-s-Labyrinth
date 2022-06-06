@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnterButton : MonoBehaviour
 {
-    public bool disableButton, activated, hideSkipText, hoverFX;
+    public bool disableButton, activated, hideSkipText, hoverFX, quickStart;
     GameObject cameraObject;
     SpriteRenderer cursor;
     Color thisColour, startColour;
@@ -31,17 +31,24 @@ public class EnterButton : MonoBehaviour
         cameraObject.transform.position = new Vector3(cameraObject.transform.position.x, cameraObject.transform.position.y, -10);
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Menu)
         {
-            if (!disableButton)
+            // CHECK IF SAVEGAME HAS BEEN LOADED
+            if (GameObject.Find(">GameManager<").GetComponent<GameManager>().saveGameLoaded)
+            {
+                transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "Continue";
+                quickStart = true;
+            }
+
+            if (!disableButton) // ENABLED
             {
                 thisColour = startColour;
                 if (cursor.bounds.Intersects(GetComponent<SpriteRenderer>().bounds))
                 {
-                    if (!hoverFX)
+                    if (!hoverFX) // PLAY FX ON HOVER
                     {
                         GameObject.Find("ButtonOneShots").GetComponent<ButtonFX>().ButtonHover();
                         hoverFX = true;
                     }
-                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown("DropBombGlobal"))
+                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown("DropBombGlobal")) // WHEN PRESSED
                     {
                         GameObject.Find("ButtonOneShots").GetComponent<ButtonFX>().ButtonPress();
                         thisColour.a = 0.5f;
@@ -49,7 +56,7 @@ public class EnterButton : MonoBehaviour
                         GameObject.Find(">GameManager<").GetComponent<AudioHandler>().storyScreen = true;
                         transform.localScale = new Vector3(defaultScale * 0.9f, defaultScale * 0.9f, 1);
                     }
-                    else
+                    else // WHEN NOT PRESSED OR HOVERING
                     {
                         thisColour.a = 1f;
                         transform.localScale = new Vector3(defaultScale * 1.1f, defaultScale * 1.1f, 1);
@@ -62,7 +69,7 @@ public class EnterButton : MonoBehaviour
                     transform.localScale = new Vector3(defaultScale, defaultScale, 1);
                 }
             }
-            else
+            else // DISABLED
             {
                 thisColour = Color.red;
                 if (cursor.bounds.Intersects(GetComponent<SpriteRenderer>().bounds))
@@ -77,7 +84,12 @@ public class EnterButton : MonoBehaviour
                 }
             }
             GetComponent<SpriteRenderer>().color = thisColour;
-            if (activated) StartGame();
+
+            if (activated) // ON BUTTON PRESS
+            {
+                if (quickStart) cameraObject.transform.position = new Vector3(0, 0, -10); // IF SAVEGAME AVALIABLE
+                StartGame();
+            }
         }
         else
         {

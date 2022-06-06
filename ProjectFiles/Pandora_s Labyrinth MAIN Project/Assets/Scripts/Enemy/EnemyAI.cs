@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public AudioClip rand1, rand2;
+    public AudioClip rand1, rand2, fireBallFX;
     public GameObject playerRadius, player, projectilePrefab, spriteObject, collisionObject, damageObject, projectileSpawn, pathObject;
     public SpriteRenderer thisSpriteRen;
     public Vector3 velocity, projectileSpawnPos, shootToPos;
@@ -104,11 +104,20 @@ public class EnemyAI : MonoBehaviour
         projectileManager = newProjectile.GetComponent<ProjectileMovement>();
         projectileManager.moveToPosition = GameObject.Find("----PlayerObjectParent----").transform.position;
         projectileManager.isPlayerOwned = false;
-        projectileManager.fireColour = ProjectileMovement.colour.Magenta;
+        if (this.name.Contains("Boss"))
+        {
+            projectileManager.projectileDamage = 125;
+            projectileManager.fireColour = ProjectileMovement.colour.Blue;
+        }
+        else
+        {
+            projectileManager.projectileDamage = 75;
+            projectileManager.fireColour = ProjectileMovement.colour.Magenta;
+        }
         //---------------------------------
 
         GetComponent<AudioSource>().volume = GameObject.Find(">GameManager<").GetComponent<AudioHandler>().effectsMax + Random.Range(-0.09f, 0.09f);
         GetComponent<AudioSource>().pitch = Random.Range(0.95f, 1.05f);
-        if (fxRand == 1) GetComponent<AudioSource>().PlayOneShot(rand1);
+        GetComponent<AudioSource>().PlayOneShot(fireBallFX);
     }
 }

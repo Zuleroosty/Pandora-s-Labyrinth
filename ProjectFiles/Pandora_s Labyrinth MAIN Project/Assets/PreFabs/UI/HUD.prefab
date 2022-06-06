@@ -197,6 +197,7 @@ Transform:
   - {fileID: 189570436562210667}
   - {fileID: 9042551559356707771}
   - {fileID: 9042551558955936872}
+  - {fileID: 3296293376694532175}
   - {fileID: 8417961071893292310}
   m_Father: {fileID: 9042551558134433202}
   m_RootOrder: 0
@@ -921,10 +922,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.44, y: 0.201, z: -1.5}
   m_LocalScale: {x: 0.058333334, y: 0.058333334, z: 1}
-  m_Children:
-  - {fileID: 3296293376694532175}
+  m_Children: []
   m_Father: {fileID: 2589147067672901930}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4534306610967019231
 GameObject:
@@ -1017,7 +1017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3296293376694532175}
   m_Layer: 0
-  m_Name: NotiKillBox
+  m_Name: ----NotiKillBox----
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1031,11 +1031,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5208463416322659656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.88571554, y: 2.3000011, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 26.71, y: 1.88, z: 0}
+  m_LocalScale: {x: 0.058333334, y: 0.058333334, z: 1}
   m_Children: []
-  m_Father: {fileID: 8417961071893292310}
-  m_RootOrder: 0
+  m_Father: {fileID: 2589147067672901930}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5452152590914998233
 GameObject:

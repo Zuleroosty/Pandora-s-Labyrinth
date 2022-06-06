@@ -25,19 +25,19 @@ public class EnemyHealthHandler : MonoBehaviour
 
         if (this.name.Contains("Ranged"))
         {
-            maxHealth = 330 * offSet;
+            maxHealth = 230 * offSet;
             damageScore = 25;
             deathScore = 315;
         }
         if (this.name.Contains("Fast"))
         {
-            maxHealth = 105 * offSet;
+            maxHealth = 75 * offSet;
             damageScore = 5;
             deathScore = 125;
         }
         if (this.name.Contains("Normal"))
         {
-            maxHealth = 110 * offSet;
+            maxHealth = 160 * offSet;
             damageScore = 15;
             deathScore = 255;
         }
@@ -115,6 +115,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        transform.position += (transform.position - projectileSprite.transform.position);
         if (GetComponent<EnemyAI>().activateBoost) GetComponent<EnemyAI>().boostTimer = 20;
         if (health - damageAmount < 0)
         {
@@ -128,7 +129,6 @@ public class EnemyHealthHandler : MonoBehaviour
             newScoreObject = Instantiate(scorePrefab, scoreLocation.transform.position, Quaternion.identity);
             newScoreObject.GetComponent<ScoreDisplayAnim>().scoreToDisplay = damageScore;
         }
-
 
         randNum = Random.Range(0, 3);
         switch (randNum)
@@ -153,7 +153,6 @@ public class EnemyHealthHandler : MonoBehaviour
             {
                 if (projectileSprite.GetComponent<SpriteRenderer>().bounds.Intersects(GetComponent<EnemyAI>().collisionObject.GetComponent<SpriteRenderer>().bounds))
                 {
-                        transform.position += (transform.position - projectileSprite.transform.position);
                         if (!radialDamage)
                         {
                             TakeDamage(200 * offSet);
