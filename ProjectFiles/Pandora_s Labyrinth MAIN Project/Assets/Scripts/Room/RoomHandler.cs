@@ -7,8 +7,8 @@ public class RoomHandler : MonoBehaviour
     public GameObject gameManager, roomCollider, door1, door2, door3, door4, roomCover, player;
     Color coverColour;
     PermissionsHandler permHandler;
-    public bool isRoomComplete, isRoomLocked, updateDoors, mainGrid, isCombatRoom, hasEntered, hasDiscovered;
-    public int posX, posY, childID, childMax, doorMax, doorCount, enemyCount, maxSpawners, destroyedSpawners, frameCounter, enemyTypes;
+    public bool isRoomComplete, isRoomLocked, updateDoors, isCombatRoom, hasEntered, hasDiscovered;
+    public int childID, childMax, doorMax, doorCount, enemyCount, maxSpawners, frameCounter, enemyTypes;
     public float enemyMax, maxSeconds, currentSeconds;
     GameObject objectCheck;
 
@@ -40,7 +40,6 @@ public class RoomHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // SHOW/HIDE ROOM
         if (gameManager.GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {

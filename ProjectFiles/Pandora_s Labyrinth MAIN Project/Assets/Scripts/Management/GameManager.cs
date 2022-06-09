@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     // GRID SPAWNING
     public bool fillGrid, spawnNextLvl, quickStart;
-    public int upgradeRooms;
+    public int upgradeRooms, maxY, maxX;
 
     // ROOM SPECIFIC
     public GameObject currentRoomParent;

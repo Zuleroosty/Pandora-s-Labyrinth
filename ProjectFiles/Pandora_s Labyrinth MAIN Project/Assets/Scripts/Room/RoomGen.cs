@@ -10,6 +10,7 @@ public class RoomGen : MonoBehaviour
     public GameObject pandora1, pandora2, pandora3, pandora4;
     public GameObject upgrade1, upgrade2, upgrade3, upgrade4;
     public GameObject newContents;
+    public int maxY;
 
     bool hasGeneratedRoom;
     int randNum, randRoomNum, spawnDelay, spawnTimer;
@@ -17,6 +18,7 @@ public class RoomGen : MonoBehaviour
     private void Start()
     {
         spawnDelay = Random.Range(90, 120);
+        maxY = GameObject.Find(">GameManager<").GetComponent<GameManager>().maxY;
     }
 
     // Update is called once per frame
@@ -45,13 +47,13 @@ public class RoomGen : MonoBehaviour
     private void RandomSpawn()
     {
         randNum = Random.Range(0, 101);
-        if (randNum <= 55) // 55% COMBAT ROOM
+        if (randNum <= 50) // 50% COMBAT ROOM
         {
             SpawnCombatRoom();
         }
         else
         {
-            randNum -= 55;
+            randNum -= 50;
             if (randNum <= 35) // 35% EMPTY ROOM
             {
                 SpawnEmptyRoom();
@@ -59,9 +61,9 @@ public class RoomGen : MonoBehaviour
             else
             {
                 randNum -= 35;
-                if (randNum <= 10) // 10% UPGRADE ROOM
+                if (randNum <= 15) // 15% UPGRADE ROOM
                 {
-                    if (GameObject.Find(">GameManager<").GetComponent<GameManager>().upgradeRooms <= 0 && transform.position.y < ((2 * 21) * -1)) // SPAWN ONLY 1 UPGRADE ROOM PER LEVEL
+                    if (GameObject.Find(">GameManager<").GetComponent<GameManager>().upgradeRooms <= 0 && transform.position.y < -20) // SPAWN ONLY 1 UPGRADE ROOM PER LEVEL
                     {
                         GameObject.Find(">GameManager<").GetComponent<GameManager>().upgradeRooms++;
                         SpawnUpgradeRoom();

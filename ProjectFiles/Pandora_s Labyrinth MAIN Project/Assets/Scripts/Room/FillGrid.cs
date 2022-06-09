@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FillGrid : MonoBehaviour
 {
-    public GameObject lrRoom, lruRoom, lrdRoom, lrudRoom, noRoom, newRoom;
+    public GameObject lruRoom, lrdRoom, lrudRoom, noRoom, newRoom;
     public bool isActive;
-    int childID, childMax, randNum;
+    public int childID, childMax, randNum, maxY, maxX;
     GameObject roomsMasterParent, roomParent;
 
     private void Start()
@@ -18,8 +18,14 @@ public class FillGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        maxY = GameObject.Find(">GameManager<").GetComponent<GameManager>().maxY;
+        maxX = GameObject.Find(">GameManager<").GetComponent<GameManager>().maxX;
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Reset) isActive = true;
-        else CheckRoomOverlap();
+        else
+        {
+            if (transform.position.y < ((maxY * 21) * -1) || transform.position.x > maxX * 35) isActive = false;
+            CheckRoomOverlap();
+        }
     }
     void CheckRoomOverlap()
     {

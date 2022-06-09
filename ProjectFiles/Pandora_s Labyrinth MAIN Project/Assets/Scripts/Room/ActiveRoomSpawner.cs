@@ -8,7 +8,7 @@ public class ActiveRoomSpawner : MonoBehaviour
     Vector3 testRight, testLeft, testDown;
     public bool canSpawnHere, testingLocation, canContinue;
     public bool failedDown, failedRight, failedLeft;
-    public int maxRooms, currentX, currentY, maxX, maxY, randNum, delay, dirNum, interval, downCounter;
+    public int currentX, currentY, maxX, maxY, randNum, delay, dirNum, interval, downCounter;
 
     private void Start()
     {
@@ -21,10 +21,11 @@ public class ActiveRoomSpawner : MonoBehaviour
 
         interval = 3; // UPDATE EVERY X FRAMES
 
-        if (maxX == 0) maxX = 4;
-        if (maxY == 0) maxY = 5;
-
-        maxRooms = maxX * maxY - 2;
+        // GRID SIZE INCLUDING 0 (MAX + 1)
+        if (maxX == 0) maxX = 3;
+        if (maxY == 0) maxY = 4;
+        GameObject.Find(">GameManager<").GetComponent<GameManager>().maxY = maxY;
+        GameObject.Find(">GameManager<").GetComponent<GameManager>().maxX = maxX;
 
         dirNum = 1;
         CheckLocation();
@@ -197,7 +198,7 @@ public class ActiveRoomSpawner : MonoBehaviour
                 }
             }
         }
-        else if (currentY < maxY)
+        else if (currentY > maxY)
         {
             dirNum = 3;
             CheckLocation();
