@@ -204,6 +204,7 @@ MonoBehaviour:
   gameState: 0
   startDelay: 0
   hasMinotaurSpawned: 0
+  saveGameLoaded: 0
   levelReset: 0
   readyToStart: 0
   fillGrid: 0
@@ -267,10 +268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   averagePlayerLevel: 0
   currentPlayLevel: 0
-  playerArmourLvl: 0
-  playerSpearLvl: 0
-  levelPlayTime: 0
-  totalPlayTime: 0
 --- !u!114 &6400150291512600331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +310,10 @@ MonoBehaviour:
   damageTaken: 0
   playtimeString: 
   xpString: 
+  frame: 0
+  second: 0
+  minute: 0
+  hour: 0
 --- !u!114 &3548591206230789024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,12 +342,12 @@ MonoBehaviour:
   ambienceMax: 0
   musicMax: 0
   averageVolume: 0
-  menuMusic: {fileID: 8300000, guid: d4aaa135057f2f048ac091f8a1557c20, type: 3}
-  combatMusic: {fileID: 8300000, guid: 7396ec94433f2854a89f1f98fa11042b, type: 3}
+  menuMusic: {fileID: 8300000, guid: c6ed7454b72fa7b428bd28bbc85cf7e9, type: 3}
+  combatMusic: {fileID: 8300000, guid: 1b5a0c9279e80de42bd19f21b448b529, type: 3}
   bossMusic: {fileID: 8300000, guid: efc9a77121f55cd47a4a9b47dc95b730, type: 3}
   winMusic: {fileID: 8300000, guid: a7710869c7a471a468d655ed4c96aab5, type: 3}
   loseMusic: {fileID: 8300000, guid: 0eb30a24c2078f24b8ebf5c07888020c, type: 3}
-  introVoiceOver: {fileID: 8300000, guid: 3423f1cd02b3f704b893c102f45d787f, type: 3}
+  introVoiceOver: {fileID: 8300000, guid: e321fbd2eb037784bbbb49465107af84, type: 3}
   storyScreen: 0
 --- !u!82 &1965016815905825396
 AudioSource:

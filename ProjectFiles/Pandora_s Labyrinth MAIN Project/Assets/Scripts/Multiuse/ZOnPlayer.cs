@@ -20,7 +20,7 @@ public class ZOnPlayer : MonoBehaviour
             }
             if (testLocation.y < GameObject.Find("PlayerSprite").transform.position.y - 1)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -1.5f); // INFRONT OF PLAYER
+                transform.position = new Vector3(transform.position.x, transform.position.y, -1.5f); // IN FRONT OF PLAYER
                 if (this.name.Contains("Pillar")) transform.GetChild(0).transform.position = new Vector3(transform.GetChild(0).transform.position.x, transform.GetChild(0).transform.position.y, -1.5f);
             }
             else

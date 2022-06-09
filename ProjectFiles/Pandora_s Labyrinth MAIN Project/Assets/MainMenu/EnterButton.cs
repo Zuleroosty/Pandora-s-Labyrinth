@@ -9,7 +9,6 @@ public class EnterButton : MonoBehaviour
     SpriteRenderer cursor;
     Color thisColour, startColour;
     float speed, defaultScale;
-    Vector3 storyEndPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +18,6 @@ public class EnterButton : MonoBehaviour
         thisColour = GetComponent<SpriteRenderer>().color;
         startColour = thisColour;
         speed = 0.2f;
-        storyEndPoint = new Vector3(0, 0, -10);
-        storyEndPoint.x = -85;
         GameObject.Find("SkipText").transform.localScale = new Vector3(0, 0, 1);
         defaultScale = transform.localScale.x;
     }
@@ -31,11 +28,16 @@ public class EnterButton : MonoBehaviour
         cameraObject.transform.position = new Vector3(cameraObject.transform.position.x, cameraObject.transform.position.y, -10);
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Menu)
         {
-            // CHECK IF SAVEGAME HAS BEEN LOADED
+            // CHECK IF SAVE GAME HAS BEEN LOADED
             if (GameObject.Find(">GameManager<").GetComponent<GameManager>().saveGameLoaded)
             {
                 transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "Continue";
                 quickStart = true;
+            }
+            else
+            {
+                transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "New Game";
+                quickStart = false;
             }
 
             if (!disableButton) // ENABLED
@@ -87,7 +89,7 @@ public class EnterButton : MonoBehaviour
 
             if (activated) // ON BUTTON PRESS
             {
-                if (quickStart) cameraObject.transform.position = new Vector3(0, 0, -10); // IF SAVEGAME AVALIABLE
+                if (quickStart) cameraObject.transform.position = new Vector3(0, 0, -10); // IF SAVE GAME AVAILABLE
                 StartGame();
             }
         }

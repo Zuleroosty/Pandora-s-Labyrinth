@@ -7,16 +7,12 @@ public class CursorController : MonoBehaviour
     public Sprite mouse, controller;
     public Vector3 mouseWorldPosition, memPos, targetPos;
     public bool followMouse;
-    GameObject aimArm, aimBox, controllerPos;
     float targetX, targetY, angle;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 10;
-        aimArm = GameObject.Find("AimingArm");
-        aimBox = GameObject.Find("ControllerAimBox");
-        controllerPos = GameObject.Find("ControllerAimPoint");
         followMouse = true;
         transform.localPosition = new Vector3(0, 0, 10);
     }
@@ -63,7 +59,6 @@ public class CursorController : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 if (Input.GetAxis("LHorizontalCon") != 0 || Input.GetAxis("LVerticalCon") != 0)
                 {
-                    Vector3 targetPos;
                     targetPos = new Vector3(0, 0, 10);
 
                     if (Input.GetAxis("LHorizontalCon") > 0 && transform.localPosition.x < 18) targetPos = new Vector3(Input.GetAxis("LHorizontalCon") * 0.35f, targetPos.y, 10);

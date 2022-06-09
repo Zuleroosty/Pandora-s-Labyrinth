@@ -7,26 +7,27 @@ public class CollisionManager : MonoBehaviour
     public GameObject playerObject, projectileObject, enemyObject;
     public AudioClip woodFX, stoneFX, metalFX;
     public bool disableCollision, projectile, player, enemy, playerInRange;
-    PlayerController playerScript;
-    EnemyAI enemyScript;
-    SpriteRenderer playerSprite, thisSprite;
-    Vector3 pushBack, enemyPushBack;
-    float plBounds, prBounds, puBounds, pdBounds, playerSizeX, playerSizeY, offSet;
-    float elBounds, erBounds, euBounds, edBounds, eSizeX, eSizeY, eOffSet;
+
+    private PlayerController playerScript;
+    private EnemyAI enemyScript;
+    private SpriteRenderer playerSprite, thisSprite;
+    private Vector3 pushBack, enemyPushBack;
+    private float plBounds, prBounds, puBounds, pdBounds, playerSizeX, playerSizeY, offSet;
+    private float elBounds, erBounds, euBounds, edBounds, eSizeX, eSizeY;
+    private int rangeTimer;
 
     public enum type { wood, stone, metal}
     public type objectType;
-    int objectMaterial;
 
     // PROJECTILE
-    GameObject projectileParent;
-    SpriteRenderer projectileSprite;
     public int projectileChildMax, projectileChildID;
+    private GameObject projectileParent;
+    private SpriteRenderer projectileSprite;
 
     // ENEMY
-    GameObject enemyParent;
-    SpriteRenderer enemySprite;
     public int enemyChildMax, enemyChildID;
+    private GameObject enemyParent;
+    private SpriteRenderer enemySprite;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,6 @@ public class CollisionManager : MonoBehaviour
         thisSprite = GetComponent<SpriteRenderer>();
         if (this.name.Contains("Door")) offSet = 0.01f;
         else offSet = 0.05f;
-        eOffSet = offSet;
 
         if (GameObject.Find("PCollision") != null)
         {
@@ -55,12 +55,19 @@ public class CollisionManager : MonoBehaviour
             playerScript = GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>();
             playerSprite = playerObject.GetComponent<SpriteRenderer>();
         }
-        if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
+        else if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
-            if (!disableCollision)
+            if (rangeTimer < 15) rangeTimer++;
+            if (rangeTimer >= 15)
             {
-                if (player && playerInRange)
-                { 
+                if(playerObject.transform.position.x > GetComponent<SpriteRenderer>().bounds.min.x - 30 && playerObject.transform.position.x < GetComponent<SpriteRenderer>().bounds.max.x + 30 && playerObject.transform.position.y > GetComponent<SpriteRenderer>().bounds.min.y - 30 && playerObject.transform.position.y < GetComponent<SpriteRenderer>().bounds.max.y + 30) playerInRange = true;
+                else playerInRange = false;
+                rangeTimer = 0;
+            }
+            if (!disableCollision && playerInRange)
+            {
+                if (player)
+                {
                     UpdatePlayerCollision(); // COLLISION TESTS DOUBLED PER FRAME TO ENSURE CORRECT COLLISIONS
                     UpdatePlayerCollision();
                 }
@@ -75,16 +82,12 @@ public class CollisionManager : MonoBehaviour
                     UpdateEnemyCollision();
                 }
             }
-            if (playerObject.transform.position.x < GetComponent<SpriteRenderer>().bounds.min.x - 25) playerInRange = true;
-            else if (playerObject.transform.position.x < GetComponent<SpriteRenderer>().bounds.max.x + 25) playerInRange = true;
-            else if (playerObject.transform.position.y > GetComponent<SpriteRenderer>().bounds.min.y - 20) playerInRange = true;
-            else if (playerObject.transform.position.y < GetComponent<SpriteRenderer>().bounds.max.y + 20) playerInRange = true;
-            else playerInRange = false;
         }
     }
+
     private void UpdatePlayerCollision()
     {
-        // Reset pushback
+        // Reset push back
         pushBack = new Vector3(0, 0);
 
         // Update size of player
@@ -127,20 +130,29 @@ public class CollisionManager : MonoBehaviour
             }
         }
 
-        // Collision Trigger
-        if (thisSprite.bounds.Intersects(playerSprite.bounds))
+        // PRE COLLISION TRIGGER
+        if (thisSprite.bounds.Intersects(GameObject.Find("SprintCollision").GetComponent<SpriteRenderer>().bounds))
         {
             GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().isColliding = true;
             GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().collisionObject = this.gameObject;
-            if (this.name.Contains("Door4"))
+
+            // POST COLLISION TRIGGER
+            if (thisSprite.bounds.Intersects(playerSprite.bounds))
             {
-                print("4");
-                if (transform.localPosition.x < 0) GameObject.Find("----PlayerObjectParent----").transform.position += new Vector3(1, 0, 0);
-                if (transform.localPosition.x > 0) GameObject.Find("----PlayerObjectParent----").transform.position -= new Vector3(1, 0, 0);
-                if (transform.localPosition.y < 0) GameObject.Find("----PlayerObjectParent----").transform.position += new Vector3(0, 1, 0);
-                if (transform.localPosition.y > 0) GameObject.Find("----PlayerObjectParent----").transform.position -= new Vector3(0, 1, 0);
+                if (this.name.Contains("Door4"))
+                {
+                    print("4");
+                    if (transform.localPosition.x < 0)
+                        GameObject.Find("----PlayerObjectParent----").transform.position += new Vector3(1, 0, 0);
+                    if (transform.localPosition.x > 0)
+                        GameObject.Find("----PlayerObjectParent----").transform.position -= new Vector3(1, 0, 0);
+                    if (transform.localPosition.y < 0)
+                        GameObject.Find("----PlayerObjectParent----").transform.position += new Vector3(0, 1, 0);
+                    if (transform.localPosition.y > 0)
+                        GameObject.Find("----PlayerObjectParent----").transform.position -= new Vector3(0, 1, 0);
+                }
+                else GameObject.Find("----PlayerObjectParent----").transform.position += pushBack;
             }
-            else GameObject.Find("----PlayerObjectParent----").transform.position += pushBack;
         }
         else if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().collisionObject == this.gameObject)
         {
@@ -176,7 +188,7 @@ public class CollisionManager : MonoBehaviour
 
             if (enemyObject != null)
             {
-                // Reset pushback
+                // Reset push back
                 enemyPushBack = new Vector3(0, 0);
 
                 // Update size of player

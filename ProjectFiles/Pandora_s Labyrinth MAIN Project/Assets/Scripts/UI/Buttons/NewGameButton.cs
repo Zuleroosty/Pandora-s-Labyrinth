@@ -5,10 +5,10 @@ using UnityEngine;
 public class NewGameButton : MonoBehaviour
 {
     public bool disableButton, activated, hoverFX;
-    public GameObject cameraObject, colSprite;
-    SpriteRenderer cursor;
-    Color thisColour;
-    float defaultScale;
+    public GameObject colSprite;
+    private SpriteRenderer cursor;
+    private Color thisColour;
+    private float defaultScale;
 
     // Start is called before the first frame update
     void Start()

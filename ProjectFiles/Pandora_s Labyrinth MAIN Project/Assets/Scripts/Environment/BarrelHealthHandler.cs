@@ -94,15 +94,18 @@ public class BarrelHealthHandler : MonoBehaviour
                     projectileSprite = projectileParent.transform.GetChild(childID).GetComponent<SpriteRenderer>();
                     if (GetComponent<SpriteRenderer>().bounds.Intersects(projectileSprite.bounds))
                     {
-                        if (projectileSprite.gameObject.name.Contains("RadialBurst(Clone)") && GameObject.Find("RadialBurst(Clone)").GetComponent<RadialBurst>().bombExplode)
+                        if (projectileSprite != null)
                         {
-                            TakeDamage(health);
-                        }
-                        else if (projectileSprite.gameObject.GetComponent<ProjectileMovement>().isPlayerOwned)
-                        {
-                            TakeDamage(projectileSprite.gameObject.GetComponent<ProjectileMovement>().projectileDamage);
-                            flashDamage = true;
-                            projectileSprite.gameObject.GetComponent<ProjectileMovement>().OnCollisionDestroy(1);
+                            if (projectileSprite.gameObject.name.Contains("RadialBurst(Clone)") && GameObject.Find("RadialBurst(Clone)").GetComponent<RadialBurst>().bombExplode)
+                            {
+                                TakeDamage(health);
+                            }
+                            else if (projectileSprite.gameObject.GetComponent<ProjectileMovement>().isPlayerOwned)
+                            {
+                                TakeDamage(projectileSprite.gameObject.GetComponent<ProjectileMovement>().projectileDamage);
+                                flashDamage = true;
+                                projectileSprite.gameObject.GetComponent<ProjectileMovement>().OnCollisionDestroy(1);
+                            }
                         }
                     }
                 }

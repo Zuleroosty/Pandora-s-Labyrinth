@@ -108,8 +108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175416003605576566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.23902439, z: 0}
-  m_LocalScale: {x: 0.6571428, y: 0.36585367, z: 0.2}
+  m_LocalPosition: {x: 0, y: -0.37692305, z: 0}
+  m_LocalScale: {x: 0.8518519, y: 0.5769231, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1447931612522269976}
   m_RootOrder: 0
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rand1: {fileID: 8300000, guid: 0b5ad0a7b1a81ce458e0bb3644f79b44, type: 3}
   rand2: {fileID: 8300000, guid: 4dfe16e85a5961b498cd435c04950867, type: 3}
+  fireBallFX: {fileID: 0}
   playerRadius: {fileID: 4857530587791508112}
   player: {fileID: 0}
   projectilePrefab: {fileID: 607562667007940462, guid: 67882616ff0e47341b6b3705581d4dfa,
@@ -294,31 +295,18 @@ MonoBehaviour:
   collisionObject: {fileID: 5296772209967469725}
   damageObject: {fileID: 5226187590677146968}
   projectileSpawn: {fileID: 0}
-  pathObject: {fileID: 175416003605576566}
   thisSpriteRen: {fileID: 84127868226808455}
-  velocity: {x: 0, y: 0, z: 0}
   projectileSpawnPos: {x: 0, y: 0, z: 0}
-  shootToPos: {x: 0, y: 0, z: 0}
   playerInRadius: 0
-  canMove: 0
   activateBoost: 0
-  canBoost: 0
   speed: 0
   spawnSpeed: 0
-  xSpeed: 0
-  ySpeed: 0
-  radiusDistance: 0
   boostTimer: 0
-  maxBoostTime: 0
-  boostCooldown: 0
   shootCooldown: 0
-  boostRand: 0
   projectileRange: 0
   fxTimer: 0
   fxRand: 0
   enemyType: 0
-  projectileFireSprite: {fileID: 0}
-  projectileHitSprite: {fileID: 0}
 --- !u!114 &4857530586701541713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,12 +325,11 @@ MonoBehaviour:
   newScoreObject: {fileID: 0}
   health: 0
   maxHealth: 0
-  damage: 0
   flashTimer: 0
   offSet: 0
   deathFX1: {fileID: 8300000, guid: e8689eaf7491ac440885d1ad9b2e1421, type: 3}
   deathFX2: {fileID: 8300000, guid: 5578afdb62431bb49beacef714e05935, type: 3}
-  painFX1: {fileID: 8300000, guid: 1bc12e9745638174381ad64c5a321613, type: 3}
+  painFX1: {fileID: 8300000, guid: d8e87602f33ff864fb15927bb05e11b0, type: 3}
   painFX2: {fileID: 8300000, guid: 36fa754f90421764aa7cbedc3fb2f310, type: 3}
   painFX3: {fileID: 8300000, guid: 371f9532f2921a3428a37dbadc7c31ac, type: 3}
   flashDamage: 0
@@ -991,7 +978,7 @@ Transform:
   m_GameObject: {fileID: 5599189953918818390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.41, z: 5}
+  m_LocalScale: {x: 0.27, y: 0.26, z: 5}
   m_Children:
   - {fileID: 2246736222585544273}
   m_Father: {fileID: 4857530586701541712}

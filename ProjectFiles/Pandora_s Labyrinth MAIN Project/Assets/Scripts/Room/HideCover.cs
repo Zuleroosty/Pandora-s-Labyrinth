@@ -20,11 +20,11 @@ public class HideCover : MonoBehaviour
         if (GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
         {
             gameManager.GetComponent<GameManager>().currentRoomParent = this.gameObject;
-            if (roomCover != null) coverColour.a = 0.2f;
+            coverColour.a = 0.2f;
         }
         else
         {
-            if (roomCover != null) coverColour.a = 1;
+            coverColour.a = 1;
         }
         roomCover.GetComponent<SpriteRenderer>().color = coverColour;
     }

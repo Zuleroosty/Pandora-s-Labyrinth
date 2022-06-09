@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3365922099182685339
 Transform:
@@ -95,7 +95,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1777485958289189027
 Transform:
@@ -135,7 +135,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2053552896649704879
 Transform:
@@ -216,7 +216,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1500952442554811813
 Transform:
@@ -297,7 +297,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8217438654577129004
 Transform:
@@ -378,7 +378,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2926687759168301159
 Transform:
@@ -456,6 +456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorV
       objectReference: {fileID: 0}
+    - target: {fileID: 2807663742844738855, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3809669238512450956, guid: 957c7a5681c17ba47bde18089e1b5a89,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -516,10 +521,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5938182523802335037, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343045568039717212, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6519714054486843795, guid: 957c7a5681c17ba47bde18089e1b5a89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.24
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6519714054486843795, guid: 957c7a5681c17ba47bde18089e1b5a89,
         type: 3}
@@ -546,6 +561,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1777485958289189027}
     m_Modifications:
+    - target: {fileID: 1285487177704698544, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2070779455267424797, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
       propertyPath: m_RootOrder
@@ -591,10 +611,20 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2579787367422127988, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5298357062265267931, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
       propertyPath: m_Name
-      value: DoorH
+      value: DoorHBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298357062265267931, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5452282284527016575, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
@@ -659,7 +689,7 @@ PrefabInstance:
     - target: {fileID: 7470170449521612055, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.277
+      value: 0.28899994
       objectReference: {fileID: 0}
     - target: {fileID: 7470170449521612055, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
@@ -685,6 +715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorV (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807663742844738855, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3809669238512450956, guid: 957c7a5681c17ba47bde18089e1b5a89,
         type: 3}
@@ -756,6 +791,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5938182523802335037, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343045568039717212, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519714054486843795, guid: 957c7a5681c17ba47bde18089e1b5a89,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6519714054486843795, guid: 957c7a5681c17ba47bde18089e1b5a89,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -812,6 +862,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1777485958289189027}
     m_Modifications:
+    - target: {fileID: 1285487177704698544, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2318271239143953565, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
       propertyPath: m_Sprite
@@ -823,10 +878,20 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2579787367422127988, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5298357062265267931, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
       propertyPath: m_Name
       value: DoorH (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298357062265267931, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5452282284527016575, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}
@@ -897,6 +962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470170449521612055, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.416
       objectReference: {fileID: 0}
     - target: {fileID: 7470170449521612055, guid: a068f6d48b670ae4b9e36fbd32b5b32c,
         type: 3}

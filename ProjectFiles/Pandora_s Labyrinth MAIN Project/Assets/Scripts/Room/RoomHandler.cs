@@ -10,6 +10,7 @@ public class RoomHandler : MonoBehaviour
     public bool isRoomComplete, isRoomLocked, updateDoors, mainGrid, isCombatRoom, hasEntered, hasDiscovered;
     public int posX, posY, childID, childMax, doorMax, doorCount, enemyCount, maxSpawners, destroyedSpawners, frameCounter, enemyTypes;
     public float enemyMax, maxSeconds, currentSeconds;
+    GameObject objectCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,12 @@ public class RoomHandler : MonoBehaviour
         permHandler = gameManager.GetComponent<PermissionsHandler>();
         transform.parent = GameObject.Find("----Rooms----").transform;
         player = GameObject.Find("----PlayerObjectParent----");
-
-        maxSpawners = 4;
-
         coverColour = roomCover.GetComponent<SpriteRenderer>().color;
 
+        maxSpawners = 4;
         maxSeconds = (10 * (1 + (gameManager.GetComponent<LevelHandler>().averagePlayerLevel * 0.2f))) * Random.Range(1.0f, 1.65f);
 
-        // MANAGE FIRST 4 ROOMS ON LEVEL 4 TO INTRODUCE ENEMIES OVERTIME
+        // MANAGE FIRST 4 ROOMS ON LEVEL 1 TO INTRODUCE ENEMIES OVERTIME
         if (gameManager.GetComponent<LevelHandler>().currentPlayLevel == 1)
         {
             if (gameManager.GetComponent<GameManager>().roomLevel == 0) enemyTypes = 1;
@@ -41,11 +40,16 @@ public class RoomHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // SHOW/HIDE ROOM
         if (gameManager.GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
-            if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(roomCollider.GetComponent<SpriteRenderer>().bounds))
+            if (doorCount < doorMax && childMax < transform.childCount) UpdateDoorObjects();
+
+            // SET CURRENT ROOM ON ENTRY
+            if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(roomCollider.GetComponent<SpriteRenderer>().bounds) && gameManager.GetComponent<GameManager>().currentRoomParent != this.gameObject)
             {
+                gameManager.GetComponent<GameManager>().currentRoomParent = this.gameObject;
                 //------------------------- STATS UPDATE -------------------------------------------
 
                 if (!hasEntered)
@@ -60,8 +64,10 @@ public class RoomHandler : MonoBehaviour
                 }
 
                 //----------------------------------------------------------------------------------
-
-                gameManager.GetComponent<GameManager>().currentRoomParent = this.gameObject;
+            }
+            else if (gameManager.GetComponent<GameManager>().currentRoomParent == this.gameObject)
+            {
+                if (coverColour.a > 0.15f) coverColour.a -= 0.1f; // HIDE ROOM COVER
                 if (!player.GetComponent<PlayerController>().hasPandorasBox && isCombatRoom)
                 {
                     if (isRoomComplete) //---UNLOCK DOORS ON COMPLETE AND TAKE PLAYER OUT OF COMBAT MODE
@@ -75,17 +81,13 @@ public class RoomHandler : MonoBehaviour
                     }
                     else
                     {
-                        if (doorCount < doorMax)
-                        {
-                            UpdateDoorObjects();
-                        }
                         enemyMax = 5 * (1 + (gameManager.GetComponent<LevelHandler>().averagePlayerLevel * 0.2f));
                         if (isRoomLocked) //---LOCK DOORS AND PUT PLAYER INTO COMBAT MODE
                         {
                             permHandler.canSpawn = true;
                             GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat = true;
 
-                            if (currentSeconds >= maxSeconds) //----WHEN ENEMYS HAVE BEEN DEFEATED
+                            if (currentSeconds >= maxSeconds) //----WHEN ENEMIES HAVE BEEN DEFEATED
                             {
                                 isRoomComplete = true;
                             }
@@ -104,24 +106,13 @@ public class RoomHandler : MonoBehaviour
                     isRoomLocked = false; //---CANNOT LOCK IF PLAYER HAS PANDORA'S BOX
                 }
             }
-            else hasEntered = false; // RESET TO UPDATE STATS ON RE-ENTRY
-
-            // UPDATE ROOM COVER TRANSPARENCY
-            if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
+            else
             {
-                if (coverColour.a > 0.15f) coverColour.a -= 0.1f;
-            }
-            else //---PLAYER IS NOT IN ROOM
-            {
-                if (coverColour.a < 1f) coverColour.a += 0.1f;
+                hasEntered = false; // RESET TO UPDATE STATS ON RE-ENTRY
+                if (coverColour.a < 1f) coverColour.a += 0.1f; // SHOW ROOM COVER ON EXIT
             }
             roomCover.GetComponent<SpriteRenderer>().color = coverColour;
 
-            // IF ROOM IS COMBAT
-            if (isCombatRoom)
-            {
-                
-            }
         }
         // STOP DUPLICATE ROOMS SPAWNING
         if (gameManager.GetComponent<GameManager>().gameState == GameManager.state.GenLevel)
@@ -135,7 +126,6 @@ public class RoomHandler : MonoBehaviour
     void UpdateDoorObjects()
     {
         // ADD ALL ROOM DOORS TO SCRIPT
-        GameObject objectCheck;
         if (childID < childMax && childMax == transform.childCount)
         {
             objectCheck = this.transform.GetChild(childID).gameObject;

@@ -42,8 +42,6 @@ public class BasicAttack : MonoBehaviour
                         attackTimer = 0;
                         isCooldown = false;
                         playerObject.GetComponent<PlayerController>().TakeDamage(damage);
-                        playerObject.transform.position += (playerObject.transform.position - transform.position);
-                        playerObject.transform.position = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y, 0);
                     }
                 }
             }

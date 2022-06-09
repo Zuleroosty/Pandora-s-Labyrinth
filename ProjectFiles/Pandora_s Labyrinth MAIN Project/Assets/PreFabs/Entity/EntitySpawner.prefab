@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bd9b583ca115434ba57ca0c00ee158b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,10 +103,8 @@ MonoBehaviour:
     type: 3}
   rangedPrefab: {fileID: 3081767725406001935, guid: 2fd8e6497b6a3b34da90ad63084c743d,
     type: 3}
-  newEnemyPrefab: {fileID: 0}
   xpSpawnObject: {fileID: 9191218713769036757, guid: f1296c026b65ef142af53bf0c69cff31,
     type: 3}
-  bossEnemySpawned: {fileID: 0}
 --- !u!95 &5949175978004227106
 Animator:
   serializedVersion: 3

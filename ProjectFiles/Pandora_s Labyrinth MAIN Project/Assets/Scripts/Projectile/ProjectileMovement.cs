@@ -10,12 +10,13 @@ public class ProjectileMovement : MonoBehaviour
     public Sprite collideSprite, blueFireSprite, redFireSprite, magentaFireSprite, greenFireSprite;
     public int projectileRange, rangeTimer, destroyTimer, randNum;
     public float speedAdjuster, projectileDamage, powerShotOffset;
-    public bool destroyObject, canDamage, isPlayerOwned, isPowershot;
+    public bool destroyObject, canDamage, isPlayerOwned, isPowershot, damagedPlayer;
     public enum colour {Blue, Red, Magenta, Green}
     public colour fireColour;
     public enum location {Mouse, ps1, ps2, ps3}
     public location shootLocation;
     PowerShotHandler powerShotBar;
+    float angle;
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +95,6 @@ public class ProjectileMovement : MonoBehaviour
             }
 
             // SET ROTATION
-            float angle;
             angle = Mathf.Atan2(moveToPosition.y - transform.position.y, moveToPosition.x - transform.position.x) * Mathf.Rad2Deg;
             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
@@ -124,10 +124,11 @@ public class ProjectileMovement : MonoBehaviour
         {
             if (!isPlayerOwned)
             {
-                if (GetComponent<SpriteRenderer>().bounds.Intersects(GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds))
+                if (GetComponent<SpriteRenderer>().bounds.Intersects(GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds) && !damagedPlayer)
                 {
                     GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().TakeDamage(projectileDamage);
                     OnCollisionDestroy(4);
+                    damagedPlayer = true;
                 }
             }
 

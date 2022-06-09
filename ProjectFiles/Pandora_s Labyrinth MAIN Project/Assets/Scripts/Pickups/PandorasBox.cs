@@ -5,7 +5,7 @@ using UnityEngine;
 public class PandorasBox : MonoBehaviour
 {
     public GameObject minotaurObject, spawnLocation;
-    bool hasCollected;
+    private bool hasCollected;
 
     void Update()
     {
@@ -17,7 +17,7 @@ public class PandorasBox : MonoBehaviour
                 {
                     hasCollected = true;
                     GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerFXHandler>().PlayPandoraPickup();
-                    GameObject.Find(">GameManager<").GetComponent<GameManager>().UpdateObjective("- EXIT LABYRINTH\n- KILL THE MINOTAUR (OPTIONAL)");
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().UpdateObjective("- KILL THE MINOTAUR");
                     GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().hasPandorasBox = true;
                     GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat = true;
                 }

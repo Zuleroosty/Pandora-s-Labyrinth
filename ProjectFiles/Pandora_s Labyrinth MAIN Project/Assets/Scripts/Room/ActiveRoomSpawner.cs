@@ -5,16 +5,13 @@ using UnityEngine;
 public class ActiveRoomSpawner : MonoBehaviour
 {
     public GameObject testObject, lrRoom, lruRoom, lrdRoom, lrudRoom, newRoom, spawnRoom, prevRoom;
-    Sprite testSprite;
     Vector3 testRight, testLeft, testDown;
     public bool canSpawnHere, testingLocation, canContinue;
     public bool failedDown, failedRight, failedLeft;
-    public int totalRooms, maxRooms, currentX, currentY, maxX, maxY, randNum, delay, dirNum, interval, downCounter;
+    public int maxRooms, currentX, currentY, maxX, maxY, randNum, delay, dirNum, interval, downCounter;
 
     private void Start()
     {
-        testSprite = testObject.GetComponent<SpriteRenderer>().sprite;
-
         testRight = new Vector3(35, 0, 0);
         testLeft = new Vector3(-35, 0, 0);
         testDown = new Vector3(0, -21, 0);

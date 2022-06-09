@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainMenuButton : MonoBehaviour
 {
     public bool disableButton, activated, hoverFX;
-    public GameObject cameraObject, colSprite;
+    public GameObject colSprite;
     SpriteRenderer cursor;
     Color thisColour;
     float defaultScale;
@@ -69,6 +69,11 @@ public class MainMenuButton : MonoBehaviour
     }
     void ButtonFunction()
     {
+        if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Lose || GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.Quit)
+        {
+            GameObject.Find(">GameManager<").GetComponent<GameManager>().playerObject.GetComponent<PlayerController>().ResetPlayerStats();
+            GameObject.Find(">GameManager<").GetComponent<GameManager>().GetComponent<StatHandler>().ResetStats();
+        }
         GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState = GameManager.state.Reset;
         activated = false;
     }

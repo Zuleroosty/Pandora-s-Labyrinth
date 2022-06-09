@@ -27,7 +27,7 @@ public class HitDisplay : MonoBehaviour
         {
             if (pulseIn)
             {
-                if (thisColour.a < 0.5f) thisColour.a += 0.005f;
+                if (thisColour.a < 0.65f) thisColour.a += 0.05f;
                 else
                 {
                     pulseIn = false;
@@ -40,7 +40,7 @@ public class HitDisplay : MonoBehaviour
                 if (delay < 10) delay++;
                 else
                 {
-                    if (thisColour.a > 0f) thisColour.a -= 0.005f;
+                    if (thisColour.a > 0f) thisColour.a -= 0.01f;
                     else pulseOut = false;
                 }
             }

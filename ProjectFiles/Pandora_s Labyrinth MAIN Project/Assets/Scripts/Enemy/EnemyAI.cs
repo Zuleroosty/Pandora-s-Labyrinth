@@ -5,18 +5,18 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public AudioClip rand1, rand2, fireBallFX;
-    public GameObject playerRadius, player, projectilePrefab, spriteObject, collisionObject, damageObject, projectileSpawn, pathObject;
+    public GameObject playerRadius, player, projectilePrefab, spriteObject, collisionObject, damageObject, projectileSpawn;
     public SpriteRenderer thisSpriteRen;
-    public Vector3 velocity, projectileSpawnPos, shootToPos;
-    public bool playerInRadius, canMove, activateBoost, canBoost;
-    public float speed, spawnSpeed, xSpeed, ySpeed;
-    public int radiusDistance, boostTimer, maxBoostTime, boostCooldown, shootCooldown, boostRand, projectileRange, fxTimer, fxRand;
+    public Vector3 projectileSpawnPos;
+    public bool playerInRadius, activateBoost;
+    public float speed, spawnSpeed;
+    public int boostTimer, shootCooldown, projectileRange, fxTimer, fxRand;
     public enum type {Normal, Fast, Hard, Ranged}
     public type enemyType;
 
     // PROJECTILE
-    GameObject newProjectile;
-    public Sprite projectileFireSprite, projectileHitSprite;
+    private GameObject newProjectile;
+    private ProjectileMovement projectileManager;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,21 +26,21 @@ public class EnemyAI : MonoBehaviour
         projectileRange = 5;
         fxRand = 15 * Random.Range(2, 7);
 
-        switch (enemyType)
+        switch (enemyType) // SET DEFAULTS BASE ON ENEMY TYPE
         {
             case type.Normal:
                 GetComponent<LootSpawner>().xpDrop = Random.Range(5, 9);
-                spawnSpeed = 8f;
+                spawnSpeed = Random.Range(7, 9);
                 speed = (spawnSpeed * (1 + (GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel) * 0.2f)) * Random.Range(0.9f, 1.06f);
                 break;
             case type.Fast:
                 GetComponent<LootSpawner>().xpDrop = Random.Range(1, 3);
-                spawnSpeed = 10f;
+                spawnSpeed = Random.Range(9, 11);
                 speed = (spawnSpeed * (1 + (GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel) * 0.2f)) * Random.Range(0.9f, 1.06f);
                 break;
             case type.Ranged:
                 GetComponent<LootSpawner>().xpDrop = Random.Range(3, 6);
-                spawnSpeed = 5f;
+                spawnSpeed = Random.Range(4, 6);
                 speed = (spawnSpeed * (1 + (GameObject.Find(">GameManager<").GetComponent<LevelHandler>().averagePlayerLevel) * 0.2f)) * Random.Range(0.9f, 1.06f);
                 break;
             case type.Hard:
@@ -99,7 +99,6 @@ public class EnemyAI : MonoBehaviour
         else projectileSpawnPos = projectileSpawn.transform.position;
 
         //-----PROJECTILE SPAWNING---------
-        ProjectileMovement projectileManager;
         newProjectile = Instantiate(projectilePrefab, projectileSpawnPos, Quaternion.identity);
         projectileManager = newProjectile.GetComponent<ProjectileMovement>();
         projectileManager.moveToPosition = GameObject.Find("----PlayerObjectParent----").transform.position;

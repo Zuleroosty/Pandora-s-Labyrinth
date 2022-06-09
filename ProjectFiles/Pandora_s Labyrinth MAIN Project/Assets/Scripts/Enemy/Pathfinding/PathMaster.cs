@@ -25,7 +25,7 @@ public class PathMaster : MonoBehaviour
     {
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
-            if (target == null) target = GameObject.Find("PlayerShadow");
+            if (target == null) target = GameObject.Find("PCollision");
             if (pathParent == null)
             {
                 pathParent = new GameObject("Path: " + this.name);
@@ -62,7 +62,7 @@ public class PathMaster : MonoBehaviour
                     if (destroyTimer >= randNum)
                     {
                         destroyTimer = 0;
-                        randNum = Random.Range(60, 121);
+                        randNum = Random.Range(30, 61);
                         Destroy(pathParent.gameObject);
 
                     }

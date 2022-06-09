@@ -12,7 +12,7 @@ public class LabyrinthExit : MonoBehaviour
             if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().hasPandorasBox)
             {
                 if (!transform.parent.GetComponent<CollisionManager>().disableCollision) transform.parent.GetComponent<CollisionManager>().disableCollision = true;
-                if (GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
+                if (GameObject.Find("PCollision").GetComponent<SpriteRenderer>().bounds.Intersects(this.GetComponent<SpriteRenderer>().bounds))
                 {
                     GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState = GameManager.state.Win;
                 }

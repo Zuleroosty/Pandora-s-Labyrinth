@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyHealthHandler : MonoBehaviour
 {
     public GameObject scorePrefab, scoreLocation, newScoreObject;
-    public float health, maxHealth, damage, flashTimer, offSet;
+    public float health, maxHealth, flashTimer, offSet;
     public AudioClip deathFX1, deathFX2, painFX1, painFX2, painFX3;
     public bool flashDamage, radialDamage;
-    SpriteRenderer projectileSprite;
-    Color thisColour;
-    GameObject projectileParent;
-    int childID, childMax, randNum, damageScore, deathScore;
+    private SpriteRenderer projectileSprite;
+    private Color thisColour;
+    private GameObject projectileParent;
+    private int childID, childMax, randNum, damageScore, deathScore;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class EnemyHealthHandler : MonoBehaviour
         }
         if (this.name.Contains("Fast"))
         {
-            maxHealth = 75 * offSet;
+            maxHealth = 55 * offSet;
             damageScore = 5;
             deathScore = 125;
         }
@@ -50,7 +50,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
         health = maxHealth;
 
-        if (!this.name.Contains("Boss")) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount++;
+        if (!this.name.Contains("Boss") && GameObject.Find("BossEnemy(Clone)") == null) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount++;
     }
 
     private void Update()
@@ -93,19 +93,20 @@ public class EnemyHealthHandler : MonoBehaviour
             {
                 case EnemyAI.type.Normal:
                     GameObject.Find(">GameManager<").GetComponent<StatHandler>().goblinsKilled++;
-                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    if (GameObject.Find("BossEnemy(Clone)") == null) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
                     break;
                 case EnemyAI.type.Fast:
                     GameObject.Find(">GameManager<").GetComponent<StatHandler>().spidersKilled++;
-                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    if (GameObject.Find("BossEnemy(Clone)") == null) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
                     break;
                 case EnemyAI.type.Ranged:
                     GameObject.Find(">GameManager<").GetComponent<StatHandler>().scorpionsKilled++;
-                    GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
+                    if (GameObject.Find("BossEnemy(Clone)") == null) GameObject.Find(">GameManager<").GetComponent<GameManager>().currentRoomParent.GetComponent<RoomHandler>().enemyCount--;
                     break;
                 case EnemyAI.type.Hard:
                     GameObject.Find(">GameManager<").GetComponent<StatHandler>().minotaursKilled++;
                     if (GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat) GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().inCombat = false;
+                    GameObject.Find(">GameManager<").GetComponent<GameManager>().UpdateObjective("- EXIT THE LABYRINTH");
                     break;
             }
 

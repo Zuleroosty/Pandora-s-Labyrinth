@@ -5,9 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // UI VARIABLES
-    public int activeNotifications, timelineStage;
-    public string newNotificationText;
     public bool isGamePaused;
+    GameObject notifyBar;
 
     // GAME SYSTEM/SETTINGS
     public enum state { GenLevel, Menu, Start, InGame, Lose, Win, Reset, Pause, Quit }
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     // PREFABS
     public GameObject lvlUpNotification, potionNotification, bombNotification, goldNotification, armourNotification, spearNotification, newNotificationObject, objectivePrefab, newObjectiveObject;
-    public GameObject playerPrefab, roomSpawner, newSpawner;
+    public GameObject roomSpawner, newSpawner;
     public GameObject newAudioObject, audioPrefab;
 
     // Start is called before the first frame update
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour
         if (currentRoomParent != null) permHandler.canMove = true;
         if (gameState == state.Menu)
         {
-            if (PlayerPrefs.GetInt("saveGameAvaliable") == 1)
+            if (PlayerPrefs.GetInt("saveGameAvailable") == 1)
             {
                 GetComponent<SaveGameHandler>().LoadInfoFromFile();
                 saveGameLoaded = true;
@@ -89,18 +88,14 @@ public class GameManager : MonoBehaviour
             else if (roomsMasterParent.transform.childCount - 1 < 0) levelReset = true;
             if (levelReset)
             {
+                saveGameLoaded = false;
                 upgradeRooms = 0;
                 readyToStart = false;
                 fillGrid = false;
                 newSpawner = Instantiate(roomSpawner, new Vector3(0, 0, 0), Quaternion.identity);
                 newSpawner.name = "RoomSpawner";
                 gameState = state.GenLevel;
-                if (!spawnNextLvl)
-                {
-                    GameObject.Find("----PlayerObjectParent----").GetComponent<PlayerController>().ResetPlayerStats();
-                    roomLevel = 0;
-                }
-                else playerObject.GetComponent<PlayerController>().StartNewLevel();
+                playerObject.GetComponent<PlayerController>().StartNewLevel();
             }
         }
         if (gameState == state.Start) playerObject = GameObject.Find("----PlayerObjectParent----");
@@ -137,9 +132,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NewNotification(string displayText, int type) // 0 = lvlup 1 = health potion 2 = bomb 3 = gold 4 = spear 5 = armour
+    public void NewNotification(string displayText, int type) // 0 = level up 1 = health potion 2 = bomb 3 = gold 4 = spear 5 = armour
     {
-        GameObject notifyBar;
         switch (type)
         {
             case 0:

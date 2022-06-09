@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 419029963387352121}
   - component: {fileID: 6848335628243589412}
   m_Layer: 0
-  m_Name: DisplayScoreText
+  m_Name: PauseScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3826381668883123932}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
@@ -796,7 +796,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3632369381157247025}
   - component: {fileID: 8107642327525198421}
-  - component: {fileID: 4432653222968193018}
   m_Layer: 0
   m_Name: ResumeButton (1)
   m_TagString: Untagged
@@ -868,23 +867,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4432653222968193018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7119650678215557411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 874cdf97aeae6fc4db77483f3b799cc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableButton: 0
-  activated: 0
-  hoverFX: 0
-  cameraObject: {fileID: 0}
-  colSprite: {fileID: 0}
 --- !u!1 &7266292276076744505
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +970,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6660896318968198857}
   - component: {fileID: 3604399233711645231}
-  - component: {fileID: 6278550465415571515}
   m_Layer: 0
   m_Name: SaveExitButton (1)
   m_TagString: Untagged
@@ -1060,23 +1041,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6278550465415571515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7971348799359430716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a3ac114b7d8a44b8aefcad347f047a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableButton: 0
-  activated: 0
-  hoverFX: 0
-  cameraObject: {fileID: 0}
-  colSprite: {fileID: 0}
 --- !u!1001 &4315148870996375940
 PrefabInstance:
   m_ObjectHideFlags: 0

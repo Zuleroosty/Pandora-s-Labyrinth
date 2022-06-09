@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8324368700859785085
 Transform:
@@ -106,6 +106,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -158,7 +159,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &776849878946368495
 Transform:
@@ -246,6 +247,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -298,7 +300,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3463433456920366206
 Transform:
@@ -386,6 +388,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -438,7 +441,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4172282595720298954
 Transform:
@@ -526,6 +529,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -578,7 +582,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5638878270110568599
 Transform:
@@ -666,6 +670,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -718,7 +723,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8046675027246983104
 Transform:
@@ -806,6 +811,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -858,7 +864,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3889318263266597938
 Transform:
@@ -946,6 +952,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -998,7 +1005,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &827819416764905638
 Transform:
@@ -1086,6 +1093,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1138,7 +1146,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5616971524743976915
 Transform:
@@ -1226,6 +1234,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1278,7 +1287,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &523526447533827750
 Transform:
@@ -1366,6 +1375,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1418,7 +1428,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1891427694066656055
 Transform:
@@ -1506,6 +1516,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1558,7 +1569,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5527903773549935939
 Transform:
@@ -1646,6 +1657,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1698,7 +1710,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5454187338777705091
 Transform:
@@ -1786,6 +1798,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1838,7 +1851,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3543359462718007771
 Transform:
@@ -1926,6 +1939,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -1978,7 +1992,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8963359193429362886
 Transform:
@@ -2066,6 +2080,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2118,7 +2133,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &758137856512387107
 Transform:
@@ -2206,6 +2221,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2258,7 +2274,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5022701267434263050
 Transform:
@@ -2346,6 +2362,7 @@ MonoBehaviour:
   projectile: 0
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2398,7 +2415,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7594852747171856271
 Transform:
@@ -2486,6 +2503,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2538,7 +2556,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9222922472954004386
 Transform:
@@ -2626,6 +2644,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2678,7 +2697,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8378720751141480683
 Transform:
@@ -2766,6 +2785,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2818,7 +2838,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4937812856626363083
 Transform:
@@ -2906,6 +2926,7 @@ MonoBehaviour:
   projectile: 1
   player: 0
   enemy: 0
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -2958,7 +2979,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2146028102374803767
 Transform:
@@ -3046,6 +3067,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -3098,7 +3120,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1599202635568074206
 Transform:
@@ -3186,6 +3208,7 @@ MonoBehaviour:
   projectile: 1
   player: 1
   enemy: 1
+  playerInRange: 0
   objectType: 1
   projectileChildMax: 0
   projectileChildID: 0
@@ -3234,7 +3257,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8983093858692559401
 Transform:

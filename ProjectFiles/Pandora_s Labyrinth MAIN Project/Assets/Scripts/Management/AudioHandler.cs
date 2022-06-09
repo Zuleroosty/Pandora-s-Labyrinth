@@ -18,8 +18,8 @@ public class AudioHandler : MonoBehaviour
     void Update()
     {
         effectsMax = averageVolume * 0.525f;
-        ambienceMax = averageVolume * 0.325f;
-        musicMax = averageVolume * 0.15f;
+        ambienceMax = averageVolume * 0.4f;
+        musicMax = averageVolume * 0.35f;
 
         if (GetComponent<GameManager>().gameState == GameManager.state.Start)
         {
@@ -32,7 +32,7 @@ public class AudioHandler : MonoBehaviour
         }
         else
         {
-            if (GetComponent<GameManager>().gameState == GameManager.state.Win || GetComponent<GameManager>().gameState == GameManager.state.Lose)
+            if (GetComponent<GameManager>().gameState == GameManager.state.Win || GetComponent<GameManager>().gameState == GameManager.state.Lose || GetComponent<GameManager>().gameState == GameManager.state.Quit)
             {
                 if (!GetComponent<AudioSource>().isPlaying)
                 {

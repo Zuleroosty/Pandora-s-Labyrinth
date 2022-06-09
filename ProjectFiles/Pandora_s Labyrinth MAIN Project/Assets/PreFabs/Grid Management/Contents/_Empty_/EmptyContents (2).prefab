@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2229907427558606932
 Transform:
@@ -95,7 +95,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7362458222584485935
 Transform:
@@ -130,7 +130,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7016674608672044830
 Transform:
@@ -162,7 +162,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3053068602577220908
 Transform:
@@ -243,7 +243,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1932475629745727686
 Transform:
@@ -376,6 +376,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: LootBarrel
       objectReference: {fileID: 0}
+    - target: {fileID: 117523975687864958, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 480320963515283845, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214985995586573373, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147064853054021863, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801511790673656288, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801511790988663145, guid: 21bc6ad5f177f754e917e02eda6d5bf6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21bc6ad5f177f754e917e02eda6d5bf6, type: 3}
 --- !u!4 &1575165226346952200 stripped
@@ -409,22 +439,22 @@ PrefabInstance:
     - target: {fileID: 2825974003864860317, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.002
+      value: 7.52
       objectReference: {fileID: 0}
     - target: {fileID: 2825974003864860317, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.197
+      value: -4.57
       objectReference: {fileID: 0}
     - target: {fileID: 4812523981074089131, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.993
+      value: -6.03
       objectReference: {fileID: 0}
     - target: {fileID: 4812523981074089131, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.187
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6203021414212419602, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
@@ -484,12 +514,12 @@ PrefabInstance:
     - target: {fileID: 6369337671339442032, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 4.55
       objectReference: {fileID: 0}
     - target: {fileID: 6369337671339442032, guid: 7b9abd4041ec79045a6514166f6cbafc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.18
+      value: 2.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b9abd4041ec79045a6514166f6cbafc, type: 3}

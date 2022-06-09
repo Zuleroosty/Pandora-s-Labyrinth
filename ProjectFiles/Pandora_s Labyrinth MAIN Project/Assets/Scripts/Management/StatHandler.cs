@@ -21,7 +21,7 @@ public class StatHandler : MonoBehaviour
         if (GameObject.Find(">GameManager<").GetComponent<GameManager>().gameState == GameManager.state.InGame)
         {
             //-------------------------------------------------------------------
-            // PLAYTIMER
+            // PLAY TIMER
             //-------------------------------------------------------------------
 
             if (frame < 60) frame++;

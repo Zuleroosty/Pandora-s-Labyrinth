@@ -8,6 +8,7 @@ public class PathHandler : MonoBehaviour
     public GameObject north, south, east, west, collisionObject, pathParent;
     public bool blockNorth, blockSouth, blockEast, blockWest, followX;
     int timer;
+    float xDist, yDist;
 
     public enum stage {GetDirection, AdjustDirection, SpawnNewLink, SequenceComplete}
     public stage currentStage;
@@ -38,8 +39,9 @@ public class PathHandler : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            else
+            else if (timer < 3)
             {
+                timer = 0;
                 switch (currentStage)
                 {
                     case stage.GetDirection:
@@ -61,6 +63,7 @@ public class PathHandler : MonoBehaviour
                         break;
                 }
             }
+            else timer++;
         }
     }
     public void ForceDestroy()
@@ -86,15 +89,18 @@ public class PathHandler : MonoBehaviour
                     nextLink = Instantiate(prefab, west.transform.position, Quaternion.identity);
                     break;
             }
-            nextLink.GetComponent<PathHandler>().owner = owner;
-            nextLink.GetComponent<PathHandler>().prevLink = this.gameObject;
+
+            if (nextLink != null)
+            {
+                nextLink.GetComponent<PathHandler>().owner = owner;
+                nextLink.GetComponent<PathHandler>().prevLink = this.gameObject;
+            }
             owner.GetComponent<PathMaster>().totalLinks++;
             currentStage = stage.SequenceComplete;
         }
     }
     void GetDirection()
     {
-        float xDist, yDist;
         xDist = transform.position.x - target.transform.position.x;
         yDist = transform.position.y - target.transform.position.y;
         if (xDist < 0) xDist *= -1;
