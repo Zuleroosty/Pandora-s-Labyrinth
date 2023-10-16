@@ -12,11 +12,18 @@ Limitations of this project:
 
 As a submission, I was only allowed to use the functionality of c#, removing the use of Unity systems like; Colliders (other than sprite intersects), 3rd-party plugins, Tile Maps and anything similar. Everything from mechanics and physics to artwork and production has been self produced with the exception of sound effects and music which had been outsourced with permission or licensing of use.
 
+
+
 About This Project:
 
 Gameplay inspired by: The Binding of Isaac, Developed by Edmund McMillen, Florian Himsl.
+
 Level generation inspired by: Splunky, Developed by Mossmouth.
+
 Development Time - 8 Months
+
 Location - London, UK
+
 Engine - Unity
+
 Language - C#
