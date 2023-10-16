@@ -17,8 +17,13 @@ As a submission, I was only allowed to use the functionality of c#, removing the
 About This Project:
 
 > Gameplay inspired by: The Binding of Isaac, Developed by Edmund McMillen, Florian Himsl.
+
 > Level generation inspired by: Splunky, Developed by Mossmouth.
+
 > Development Time - 8 Months
+
 > Location - London, UK
+
 > Engine - Unity
+
 > Language - C#
